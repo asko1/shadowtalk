@@ -1,3 +1,4 @@
+import { Grid } from '@mui/material'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
@@ -21,10 +22,14 @@ const Home: NextPage = () => {
               <label>Gaming</label>
               <input type="checkbox" value="Gaming"></input> 
             </div>
-            <div className={local.griddiv}>
-              <input className={local.gridspecific} type="submit" value="Text Channel"></input> 
-              <input className={local.gridspecific} type="submit" value="Voice Channel"></input> 
-            </div>
+            <Grid container spacing={8}>
+              <Grid item xs={6}>
+                <input className={local.gridspecific} type="submit" value="Text Channel"></input>
+              </Grid>
+              <Grid item xs={6}>
+                <input className={local.gridspecific} type="submit" value="Voice Channel"></input> 
+              </Grid>
+            </Grid>
           </form>
         </div>
       </main>
