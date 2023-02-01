@@ -2,7 +2,7 @@ import React from "react";
 import { usePresence, assertConfiguration } from "@ably-labs/react-hooks";
 import styles from "../styles/Home.module.css";
 
-export default function Participants(props) {
+export default function Participants(props: any) {
   const ably = assertConfiguration();
   const [presenceData] = usePresence("headlines");
 
