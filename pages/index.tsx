@@ -9,6 +9,7 @@ import Participants from "../components/Participants";
 import { configureAbly } from "@ably-labs/react-hooks";
 import Articles from "../components/Articles";
 import { getHistoricalMessages } from "../lib/history";
+import Voicechat from '../components/Voicechat';
 
 configureAbly({
   authUrl: `/api/createTokenRequest`,
@@ -42,10 +43,10 @@ const Home = (props: {history: any}) => {
             <Typography variant='h3' sx={{ textAlign: 'center' }}>
               Welcome to Saamesõbraks
             </Typography>
-
               <Box className={styles.descriptionspecific} >
                 <Button variant="contained" type="submit" >Text Chat</Button>
                 <Button variant="contained" type="submit" >Voice Chat</Button>
+                <Voicechat></Voicechat>
               </Box>
               <FormGroup>
                 <Box className={styles.descriptionspecific}>
