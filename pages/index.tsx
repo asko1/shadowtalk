@@ -24,9 +24,9 @@ const Home: NextPage = () => {
           </Box>
           <FormGroup>
             <Box className={styles.descriptionspecific}>
-              <FormControlLabel control={<Checkbox defaultChecked />} label="Gaming" />
-              <FormControlLabel control={<Checkbox defaultChecked />} label="Music" />
-              <FormControlLabel control={<Checkbox defaultChecked />} label="Drawing" />
+              <FormControlLabel control={<Checkbox defaultChecked sx={{ color: '#5cb567' , '&.Mui-checked':{color:'#5cb567'}}} />} label="Gaming" />
+              <FormControlLabel control={<Checkbox defaultChecked sx={{ color: '#5cb567' , '&.Mui-checked':{color:'#5cb567'}}} />} label="Music" />
+              <FormControlLabel control={<Checkbox defaultChecked sx={{ color: '#5cb567' , '&.Mui-checked':{color:'#5cb567'}}} />} label="Drawing" />
             </Box>
           </FormGroup>
         </Box>
