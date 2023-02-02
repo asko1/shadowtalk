@@ -22,7 +22,7 @@ export default function Home(props: { history: any; }) {
         <h1>Realtime Chat</h1>
         <h3>Participants</h3>
         <Participants />
-        <Articles history={props.history} />
+        <Articles/>
       </main>
     </div>
   );

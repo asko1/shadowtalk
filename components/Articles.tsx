@@ -13,12 +13,12 @@ clearHistoryState:
 */
 let clearHistoryState = true;
 
-export default function Articles(props: { history: any; }) {
+export default function Articles() {
   let inputBox: HTMLInputElement | null; 
 
   const [headlineText, setHeadlineText] = useState("");
-  const [headlines, updateHeadlines] = useState(props.history);
-  const [_, ably] = useChannel("[?rewind=5]headlines", (headline: any) => {
+  const [headlines, updateHeadlines] = useState([] as any);
+  const [_, ably] = useChannel("headlines", (headline: any) => {
     if (clearHistoryState) {
       resetHeadlines();
       clearHistoryState = false;

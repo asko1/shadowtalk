@@ -12,10 +12,25 @@ import { getHistoricalMessages } from "../lib/history";
 import Voicechat from '../components/Voicechat';
 
 configureAbly({
-  authUrl: `/api/createTokenRequest`,
+  authUrl: `${process.env.NEXT_PUBLIC_HOSTNAME || 'https://' + process.env.VERCEL_URL}/api/createTokenRequest`,
 });
 
 const interests = ["Gaming", "Music", "Drawing"]
+
+function matchInterests(a: string[], b: string[]) {
+  let matches = 0;
+  const longest = a.length > b.length ? a : b
+  const shortest = a.length > b.length ? b : a
+  
+  for (let i = 0; i < shortest.length; i++) {
+    if (longest.includes(shortest[i])) {
+      matches++
+    }
+  }
+  if (shortest.length / matches > 0.49) {
+    return true
+  }
+}
 
 const Home = (props: {history: any}) => {
   function populateInterests() {
@@ -63,7 +78,7 @@ const Home = (props: {history: any}) => {
           <h1>Realtime Chat</h1>
           <h3>Participants</h3>
             <Participants />
-            <Articles history={props.history} />
+            <Articles/>
         </Box>
         </Box>
       </Box>
