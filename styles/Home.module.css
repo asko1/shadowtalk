@@ -1,15 +1,17 @@
 .container {
   padding: 0 2rem;
+  overflow-y: hidden;
 }
 
 .main {
   min-height: 100vh;
   padding: 4rem 0;
   flex: 1;
-  display: flex;
+  display: block;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
 
 .footer {
@@ -78,11 +80,12 @@
   padding: 1.5rem;
   text-align: left;
   color: inherit;
-  text-decoration: none;
   border: 1px solid #eaeaea;
   border-radius: 10px;
   transition: color 0.15s ease, border-color 0.15s ease;
-  max-width: 300px;
+  max-width: auto;
+  align-items: left;
+  overflow-wrap: break-word;
 }
 
 .card:hover,
@@ -152,7 +155,6 @@
   margin-bottom: 0.5rem;
   
 }
-
 
 @media (max-width: 600px) {
   .grid {
