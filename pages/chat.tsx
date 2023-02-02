@@ -6,10 +6,11 @@ import Articles from "../components/Articles";
 import { getHistoricalMessages } from "../lib/history";
 
 configureAbly({
-  authUrl: `${process.env.NEXT_PUBLIC_HOSTNAME}/api/createTokenRequest`,
+  authUrl: `${process.env.NEXT_PUBLIC_HOSTNAME || process.env.VERCEL_URL}/api/createTokenRequest`,
 });
 
 export default function Home(props: { history: any; }) {
+  console.log(process.env.NEXT_PUBLIC_HOSTNAME, process.env.VERCEL_URL)
   return (
     <div className={styles.container}>
       <Head>
