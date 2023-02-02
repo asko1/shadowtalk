@@ -5,6 +5,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import local from "../styles/local.module.css"
+import Voicechat from '../components/Voicechat';
 
 const Home: NextPage = () => {
   return (
@@ -21,6 +22,7 @@ const Home: NextPage = () => {
           <Box className={styles.descriptionspecific} >
             <Button variant="contained" type="submit" >Text Chat</Button>
             <Button variant="contained" type="submit" >Voice Chat</Button>
+            <Voicechat></Voicechat>
           </Box>
           <FormGroup>
             <Box className={styles.descriptionspecific}>
