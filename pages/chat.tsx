@@ -18,9 +18,8 @@ export default function Home(props: { history: any; }) {
         <title>Chat</title>
       </Head>
 
-      <main className={styles.main}>
+      <main>
         <h1>Realtime Chat</h1>
-        <h2>kodus</h2>
         <h3>Participants</h3>
         <Participants />
         <Articles history={props.history} />

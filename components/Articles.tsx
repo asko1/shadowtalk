@@ -2,6 +2,10 @@ import React, { useState } from "react";
 import { useChannel } from "@ably-labs/react-hooks";
 import ArticlePreview from "./ArticlePreview";
 import styles from "../styles/Home.module.css";
+import Chatbox from "./Chatbox";
+import MessageItem from "./MessageItem";
+import { Button } from "@mui/material";
+import SendIcon from '@mui/icons-material/Send';
 
 /* 
 clearHistoryState:
@@ -16,7 +20,7 @@ export default function Articles(props: { history: any; }) {
 
   const [headlineText, setHeadlineText] = useState("");
   const [headlines, updateHeadlines] = useState(props.history);
-  const [_, ably] = useChannel("[?rewind=5]headlines", (headline) => {
+  const [_, ably] = useChannel("[?rewind=5]headlines", (headline: any) => {
     if (clearHistoryState) {
       resetHeadlines();
       clearHistoryState = false;
@@ -33,8 +37,9 @@ export default function Articles(props: { history: any; }) {
   const processedHeadlines = headlines.map((headline: any) =>
     processMessage(headline, ably.auth.clientId)
   );
-  const articles = processedHeadlines.map((headline: any, index: React.Key | null | undefined) => (
-    <ArticlePreview key={index} headline={headline} index={undefined} />
+  const articles = processedHeadlines.reverse().map((headline: any, index: React.Key | null | undefined) => (
+    // <ArticlePreview key={index} headline={headline} index={undefined} />
+    <MessageItem key={index} headline={headline} index={undefined}/>
   ));
 
   const handleFormSubmission = async (event: { charCode: number; preventDefault: () => void; }) => {
@@ -57,6 +62,11 @@ export default function Articles(props: { history: any; }) {
 
   return (
     <div>
+      <div className={styles.chatbox}>
+        <div>
+          {articles}
+        </div>
+      </div>
       {/* @ts-ignore */}
       <form onSubmit={handleFormSubmission} className={styles.form}>
         <input
@@ -65,20 +75,19 @@ export default function Articles(props: { history: any; }) {
             inputBox = element;
           }}
           value={headlineText}
-          placeholder="ütle"
+          placeholder="Type something here..."
           onChange={(event) => setHeadlineText(event.target.value)}
           onKeyPress={handleFormSubmission}
           className={styles.input}
         />
-        <button
-          type="submit"
-          className={styles.submit}
-          disabled={headlineTextIsEmpty}
-        >
-          Submit
-        </button>
+        
+        <Button variant="contained" 
+                type="submit"
+                disabled={headlineTextIsEmpty}
+                endIcon={<SendIcon />}>
+          Send
+        </Button>
       </form>
-      <div>{articles}</div>
     </div>
   );
 }
