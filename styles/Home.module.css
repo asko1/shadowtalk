@@ -1,15 +1,17 @@
 .container {
   padding: 0 2rem;
+  overflow-y: hidden;
 }
 
 .main {
   min-height: 100vh;
   padding: 4rem 0;
   flex: 1;
-  display: flex;
+  display: block;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
 
 .footer {
@@ -110,7 +112,23 @@
 }
 
 .chatbox {
-  transform: scaleY(1);
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+.messagesbox {
+  overflow-y: scroll;
+  min-width: 60%;
+  height: 20rem;
+  display: inline-block;
+}
+
+.scroller * {
+  overflow-anchor: none;
+}
+.anchor {
+  overflow-anchor: auto;
+  height: 1px;
 }
 
 @media (max-width: 600px) {

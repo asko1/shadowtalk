@@ -62,13 +62,15 @@ export default function Articles(props: { history: any; }) {
 
   return (
     <div>
-      <div className={styles.chatbox}>
-        <div>
+      <div className={styles.messagesbox}>
+        <div  className={styles.scroller}>
           {articles}
+          <div className={styles.anchor} />
         </div>
       </div>
+      <div className={styles.chatbox}>
       {/* @ts-ignore */}
-      <form onSubmit={handleFormSubmission} className={styles.form}>
+      <form onSubmit={handleFormSubmission}>
         <input
           type="text"
           ref={(element) => {
@@ -88,6 +90,7 @@ export default function Articles(props: { history: any; }) {
           Send
         </Button>
       </form>
+      </div>
     </div>
   );
 }
