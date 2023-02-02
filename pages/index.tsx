@@ -14,9 +14,23 @@ configureAbly({
   authUrl: `/api/createTokenRequest`,
 });
 
-const Home = (props: { history: any; }) => {
-  console.log(process.env.NEXT_PUBLIC_HOSTNAME, process.env.NEXT_PUBLIC_VERCEL_URL, process.env.VERCEL_URL)
-  console.log(process.env)
+const interests = ["Gaming", "Music", "Drawing"]
+
+const Home = (props: {history: any}) => {
+  function populateInterests() {
+    const interestElements: JSX.Element[] = []
+    interests.map((interest, key) => {
+      interestElements.push(
+        <FormControlLabel
+          control={<Checkbox />}
+          label={interest}
+          key={key}
+          sx={{ color: '#5cb567' , '&.Mui-checked':{color:'#5cb567'}}}
+        />
+      )
+    })
+    return interestElements
+  }
   return (
     <div>
       <Box className={styles.mainpagedivision}>
@@ -29,19 +43,15 @@ const Home = (props: { history: any; }) => {
               Welcome to Saamesõbraks
             </Typography>
 
-            <Box >
               <Box className={styles.descriptionspecific} >
                 <Button variant="contained" type="submit" >Text Chat</Button>
                 <Button variant="contained" type="submit" >Voice Chat</Button>
               </Box>
               <FormGroup>
                 <Box className={styles.descriptionspecific}>
-                  <FormControlLabel control={<Checkbox defaultChecked sx={{ color: '#5cb567' , '&.Mui-checked':{color:'#5cb567'}}} />} label="Gaming" />
-                  <FormControlLabel control={<Checkbox defaultChecked sx={{ color: '#5cb567' , '&.Mui-checked':{color:'#5cb567'}}} />} label="Music" />
-                  <FormControlLabel control={<Checkbox defaultChecked sx={{ color: '#5cb567' , '&.Mui-checked':{color:'#5cb567'}}} />} label="Drawing" />
+                  {populateInterests()}
                 </Box>
               </FormGroup>
-            </Box>
           </Box>
         </Box>
         <Box className={styles.mainpageright}>
