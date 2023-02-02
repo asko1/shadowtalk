@@ -24,3 +24,4 @@ export default function MessageItem({index, headline}: any) {
         </div>
     )
 }
+
