@@ -11,6 +11,7 @@ configureAbly({
 
 export default function Home(props: { history: any; }) {
   console.log(process.env.NEXT_PUBLIC_HOSTNAME, process.env.VERCEL_URL)
+  console.log(process.env)
   return (
     <div className={styles.container}>
       <Head>
