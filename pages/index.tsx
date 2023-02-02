@@ -56,7 +56,7 @@ const Home = (props: {history: any}) => {
           </Head>
           <Box>
             <Typography variant='h3' sx={{ textAlign: 'center' }}>
-              Welcome to Saamesõbraks
+              Find a friend!
             </Typography>
               <Box className={styles.descriptionspecific} >
                 <Button variant="contained" type="submit" >Text Chat</Button>
@@ -71,15 +71,6 @@ const Home = (props: {history: any}) => {
           </Box>
         </Box>
         <Box className={styles.mainpageright}>
-        <Typography variant='h3' sx={{ textAlign: 'center' }}>
-              Text chat
-        </Typography>
-        <Box className={styles.container}>
-          <h1>Realtime Chat</h1>
-          <h3>Participants</h3>
-            <Participants />
-            <Articles/>
-        </Box>
         </Box>
       </Box>
     </div>

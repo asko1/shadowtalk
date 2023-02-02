@@ -178,10 +178,11 @@
 
 .mainpageleft {
   background-color: #f2f2f2;
-
+  height: 500px;
 }
+
 .mainpageright {
   background-color: #e0e0e0;
+  height: 500px;
   justify-content: center;
 }
-
