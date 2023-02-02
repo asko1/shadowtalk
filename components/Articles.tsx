@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { useChannel } from "@ably-labs/react-hooks";
-import ArticlePreview from "./ArticlePreview";
 import styles from "../styles/Home.module.css";
-import Chatbox from "./Chatbox";
 import MessageItem from "./MessageItem";
 import { Button } from "@mui/material";
 import SendIcon from '@mui/icons-material/Send';
@@ -72,7 +70,7 @@ export default function Articles(props: { history: any; }) {
       {/* @ts-ignore */}
       <form onSubmit={handleFormSubmission}>
         <input
-          type="text"
+          type="textarea"
           ref={(element) => {
             inputBox = element;
           }}
