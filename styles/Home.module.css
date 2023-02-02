@@ -115,23 +115,9 @@
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  .card,
-  .footer {
-    border-color: #222;
-  }
-  .code {
-    background: #111;
-  }
-  .logo img {
-    filter: invert(1);
-  }
-}
-
 .descriptionspecific {
   display:flex;
   gap:20px;
   justify-content: center;
   margin: 20px 0;
-
 }
