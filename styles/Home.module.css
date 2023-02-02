@@ -1,15 +1,17 @@
 .container {
   padding: 0 2rem;
+  overflow-y: hidden;
 }
 
 .main {
   min-height: 100vh;
   padding: 4rem 0;
   flex: 1;
-  display: flex;
+  display: block;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
 
 .footer {
@@ -78,11 +80,12 @@
   padding: 1.5rem;
   text-align: left;
   color: inherit;
-  text-decoration: none;
   border: 1px solid #eaeaea;
   border-radius: 10px;
   transition: color 0.15s ease, border-color 0.15s ease;
-  max-width: 300px;
+  max-width: auto;
+  align-items: left;
+  overflow-wrap: break-word;
 }
 
 .card:hover,
@@ -106,6 +109,51 @@
 .logo {
   height: 1em;
   margin-left: 0.5rem;
+}
+
+.chatbox {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+.messagesbox {
+  overflow-y: scroll;
+  width: 100%;
+  height: 17rem;
+  display: inline-block;
+  padding-bottom: 20px;
+}
+
+.scroller * {
+  overflow-anchor: none;
+}
+
+.scroller b {
+  font-size: medium;
+}
+
+.scroller text {
+  font-size: x-small;
+}
+
+.scroller span {
+  font-size: small;
+}
+
+.anchor {
+  overflow-anchor: auto;
+  height: 1px;
+}
+
+.timestamp {
+  font-size: x-small;
+}
+
+.input {
+  height: 5rem;
+  width: 30rem;
+  margin-bottom: 0.5rem;
+  
 }
 
 @media (max-width: 600px) {

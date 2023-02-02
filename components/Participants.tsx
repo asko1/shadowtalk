@@ -6,8 +6,8 @@ export default function Participants(props: any) {
   const ably = assertConfiguration();
   const [presenceData] = usePresence("headlines");
 
-  const presenceList = presenceData.map((member, index) => {
-    const isItMe = member.clientId === ably.auth.clientId ? "(me)" : "";
+  const presenceList = presenceData.map((member: any, index: any) => {
+    const isItMe = member.clientId === ably.auth.clientId ? " (me)" : "";
 
     return (
       <li key={index} className={styles.participant}>
