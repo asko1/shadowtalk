@@ -119,7 +119,7 @@
 .messagesbox {
   overflow-y: scroll;
   width: 100%;
-  height: 14rem;
+  height: 24rem;
   display: inline-block;
   padding-bottom: 20px;
 }
