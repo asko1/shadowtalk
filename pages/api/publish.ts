@@ -2,7 +2,7 @@ import Ably from "ably/promises";
 import { NextApiRequest, NextApiResponse } from "next";
 
 const ably = new Ably.Rest(process.env.ABLY_SERVER_API_KEY as string);
-const channel = ably.channels.get("headlines");
+
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== "POST") {
@@ -11,6 +11,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   const { result } = await req.body.text
+  const channel = ably.channels.get(req.body.channel);
 
   channel.publish("new-headline", {
     author: req.body.author,
