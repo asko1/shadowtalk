@@ -99,9 +99,7 @@ const Home = (props: {history: any}) => {
                 </Box>
               </FormGroup>
             </form>
-              
               <Participants channelName='waiting' />
-              <Articles channelName='waiting' />
           </Box>
         </Box>
         <Box className={styles.mainpageright}>

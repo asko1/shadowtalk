@@ -25,10 +25,14 @@ export default async function matchingHandler(
   res: NextApiResponse<Data>
 ) {
   await req;
+  console.log(thePit.length, 'length')
   if (thePit.length === 0) {
-    thePit[req.body.userId] = req.body.interests
+    thePit[thePit.length] = req.body.interests, req.body.userId
     res.status(201).json({ channel: req.body.userId })
   } else {
+    thePit.array.forEach((element: any) => {
+      console.log(element, 'foreach')
+    });
     for (let i = 0; i < thePit.length; i++) {
       if (matchInterests(thePit[i], req.body.interests)) {
         console.log('match found')
@@ -38,7 +42,6 @@ export default async function matchingHandler(
   }
   /*const userId = req.body.userId
   const interests = req.body.interests*/
-  console.log(thePit)
   console.log(req.body.interests)
   return;
 }
