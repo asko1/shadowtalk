@@ -13,7 +13,7 @@ import Voicechat from '../components/Voicechat';
 import React, { SyntheticEvent, useState } from 'react';
 
 configureAbly({
-  authUrl: `${'https://' + process.env.VERCEL_URL || process.env.NEXT_PUBLIC_HOSTNAME}/api/createTokenRequest`,
+  authUrl: `${process.env.VERCEL_URL || process.env.NEXT_PUBLIC_HOSTNAME}/api/createTokenRequest`,
 });
 
 const ably = assertConfiguration();
