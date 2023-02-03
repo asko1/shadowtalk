@@ -84,7 +84,7 @@ const Home = (props: {history: any}) => {
             <title>Saamesõbraks</title>
           </Head>
           <Box>
-            <Typography variant='h3' sx={{ textAlign: 'center' }}>
+            <Typography variant='h3' sx={{ textAlign: 'center', fontFamily: 'Roberto'}}>
               Find a friend!
             </Typography>
             <form onSubmit={sendToMatching}>
