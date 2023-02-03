@@ -89,13 +89,12 @@ const Home = (props: {history: any}) => {
           </Head>
           <Box>
             <Typography variant='h3' sx={{ textAlign: 'center' }}>
-              Find a friend!
+              <b>Find a friend for life!</b>
             </Typography>
             <form onSubmit={sendToMatching}>
               <Box className={styles.descriptionspecific} >
                 <Button variant="contained" type="submit" >Text Chat</Button>
                 <Button variant="contained" type="submit" >Voice Chat</Button>
-                <Voicechat></Voicechat>
               </Box>
               <FormGroup>
                 <Box className={styles.descriptionspecific}>
