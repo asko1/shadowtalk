@@ -54,13 +54,12 @@ const Home = (props: {history: any}) => {
   }
   
   async function sendToMatching(event: { preventDefault: () => void; }) {
-    const stuff = {
-      interests: formData,
-      userId: ably.auth.clientId
-    }
-    console.log(stuff)
+    let stuff: any = {}
+    stuff[`${ably.auth.clientId}`] = Object.values(formData)
+      //{`${ably.auth.clientId}` = Object.values(formData)}
+    
+    console.log(stuff, 'stuff')
     event.preventDefault()
-    console.log(formData)
     const res = await fetch('/api/matching', {
       method: "POST",
       headers: {
@@ -70,6 +69,11 @@ const Home = (props: {history: any}) => {
     })
 
     if (res.status === 201) {
+      const body = await res.json()
+      console.log(body.channel as string)
+      setKms(body.channel as string)
+    }
+    if (res.status === 200) {
       const body = await res.json()
       console.log(body.channel as string)
       setKms(body.channel as string)

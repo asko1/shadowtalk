@@ -26,7 +26,6 @@ export default function Articles(props: { channelName: ChannelParameters; }) {
     console.log(ably)
     updateHeadlines((prev: any) => [headline, ...prev]);
   });
-  console.log(headlines)
   const resetHeadlines = () => {
     updateHeadlines([]);
   };
