@@ -29,6 +29,7 @@ export default async function matchingHandler(
       if (matchInterests(Object.values(thePit[0])[0] as string[], Object.values(req.body)[0] as string[])) {
         console.log('match found')
         res.status(200).json({ channel: Object.keys(thePit[0])[0] })
+        thePit = thePit.splice(1)
       }
     }
   }
