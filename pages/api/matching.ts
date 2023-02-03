@@ -30,7 +30,7 @@ export default async function matchingHandler(
     thePit[thePit.length] = req.body.interests, req.body.userId
     res.status(201).json({ channel: req.body.userId })
   } else {
-    thePit.array.forEach((element: any) => {
+    thePit.forEach((element: any) => {
       console.log(element, 'foreach')
     });
     for (let i = 0; i < thePit.length; i++) {

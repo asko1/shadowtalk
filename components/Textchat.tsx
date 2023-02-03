@@ -11,8 +11,8 @@ export default function Textchat() {
             </Typography>
             <Box className={styles.container}>
                 <h3>Participants</h3>
-                <Participants />
-                <Articles/>
+                {/*<Participants />
+                //<Articles/>*/}
             </Box>
         </Box>
     )
