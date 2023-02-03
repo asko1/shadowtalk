@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useChannel } from "@ably-labs/react-hooks";
+import { ChannelParameters, useChannel } from "@ably-labs/react-hooks";
 import styles from "../styles/Home.module.css";
 import MessageItem from "./MessageItem";
 import { Button } from "@mui/material";
@@ -13,20 +13,20 @@ clearHistoryState:
 */
 let clearHistoryState = true;
 
-export default function Articles(props: { history: any; }) {
+export default function Articles(props: { channelName: ChannelParameters; }) {
   let inputBox: HTMLInputElement | null; 
 
   const [headlineText, setHeadlineText] = useState("");
-  const [headlines, updateHeadlines] = useState(props.history);
-  const [_, ably] = useChannel("[?rewind=5]headlines", (headline: any) => {
+  const [headlines, updateHeadlines] = useState([] as any);
+  const [_, ably] = useChannel(props.channelName, (headline: any) => {
     if (clearHistoryState) {
       resetHeadlines();
       clearHistoryState = false;
     }
-
+    console.log(ably)
     updateHeadlines((prev: any) => [headline, ...prev]);
   });
-
+  console.log(headlines)
   const resetHeadlines = () => {
     updateHeadlines([]);
   };
@@ -45,13 +45,14 @@ export default function Articles(props: { history: any; }) {
     if (nonEnterKeyPress || headlineTextIsEmpty) {
       return;
     }
+    console.log(ably)
 
     event.preventDefault();
 
     await fetch("/api/publish", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ text: headlineText, author: ably.auth.clientId }),
+      body: JSON.stringify({ text: headlineText, author: ably.auth.clientId, channel: props.channelName }),
     });
 
     setHeadlineText("");
