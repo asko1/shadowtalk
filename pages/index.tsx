@@ -9,6 +9,7 @@ import Participants from "../components/Participants";
 import { configureAbly } from "@ably-labs/react-hooks";
 import Articles from "../components/Articles";
 import { getHistoricalMessages } from "../lib/history";
+import {isMobile} from 'react-device-detect';
 
 configureAbly({
   authUrl: `/api/createTokenRequest`,
@@ -30,6 +31,45 @@ const Home = (props: {history: any}) => {
       )
     })
     return interestElements
+  }
+  if(isMobile) {
+    return (
+      <div>
+      <Box>
+        <Box className={styles.mainpageleft}>
+          <Head>
+            <title>Saamesõbraks</title>
+          </Head>
+          <Box>
+            <Typography variant='h3' sx={{ textAlign: 'center' }}>
+              Welcome to Saamesõbraks
+            </Typography>
+
+              <Box className={styles.descriptionspecific} >
+                <Button variant="contained" type="submit" >Text Chat</Button>
+                <Button variant="contained" type="submit" >Voice Chat</Button>
+              </Box>
+              <FormGroup>
+                <Box className={styles.descriptionspecific}>
+                  {populateInterests()}
+                </Box>
+              </FormGroup>
+          </Box>
+        </Box>
+        <Box className={styles.mainpageright}>
+        <Typography variant='h3' sx={{ textAlign: 'center' }}>
+              Text chat
+        </Typography>
+        <Box className={styles.container}>
+          <h1>Realtime Chat</h1>
+          <h3>Participants</h3>
+            <Participants />
+            <Articles history={props.history} />
+        </Box>
+        </Box>
+      </Box>
+    </div>
+    )
   }
   return (
     <div>
