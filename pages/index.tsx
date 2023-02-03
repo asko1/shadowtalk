@@ -20,7 +20,7 @@ const ably = assertConfiguration();
 const interests = ["Gaming", "Music", "Drawing"]
 
 const Home = (props: {history: any}) => {
-  const [kms, setKms] = useState('waitNO - ')
+  const [kms, setKms] = useState('')
   const test = <Participants channelName={kms}/>
 
   let formInterests: {[key: string]: any} = []
