@@ -20,7 +20,7 @@ const ably = assertConfiguration();
 const interests = ["Gaming", "Music", "Drawing"]
 
 const Home = (props: {history: any}) => {
-  const [kms, setKms] = useState('waitNO')
+  const [kms, setKms] = useState('waitNO - ')
   const test = <Participants channelName={kms}/>
 
   let formInterests: {[key: string]: any} = []
@@ -99,7 +99,7 @@ const Home = (props: {history: any}) => {
                 </Box>
               </FormGroup>
             </form>
-              <Participants channelName='waiting' />
+              <Participants channelName='waiting - ' />
           </Box>
         </Box>
         <Box className={styles.mainpageright}>
