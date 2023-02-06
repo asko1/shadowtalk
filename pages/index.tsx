@@ -106,7 +106,7 @@ const Home = (props: {history: any}) => {
           </Box>
         </Box>
         <Box className={styles.mainpageright}>
-          <Typography variant='h3' sx={{ textAlign: 'center' }}>
+          <Typography variant='h5' sx={{ textAlign: 'center', height: '10%',}}>
             You are chatting with {kms}
           </Typography>
           <Articles channelName={kms} />
