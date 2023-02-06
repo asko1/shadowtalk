@@ -1,4 +1,4 @@
-import { Box, Button, Checkbox, Container, FormControlLabel, FormGroup, Grid, Typography, FormControl } from '@mui/material'
+import { Box, Button, Checkbox, Container, FormControlLabel, FormGroup, Grid, Typography, FormControl, colors } from '@mui/material'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -94,7 +94,7 @@ const Home = (props: {history: any}) => {
             <form onSubmit={sendToMatching}>
               <Box className={styles.descriptionspecific} >
                 <Button variant="contained" type="submit" >Text Chat</Button>
-                <Button variant="contained" type="submit" >Voice Chat</Button>
+                <Button variant="contained" type="submit" sx={{bgcolor: '#00cc00'}} >Voice Chat</Button>
               </Box>
               <FormGroup>
                 <Box className={styles.descriptionspecific}>
