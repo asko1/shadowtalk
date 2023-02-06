@@ -26,7 +26,6 @@ export default function Articles(props: { channelName: ChannelParameters; }) {
     console.log(ably)
     updateHeadlines((prev: any) => [headline, ...prev]);
   });
-  console.log(headlines)
   const resetHeadlines = () => {
     updateHeadlines([]);
   };
@@ -62,7 +61,7 @@ export default function Articles(props: { channelName: ChannelParameters; }) {
   return (
     <div>
       <div className={styles.messagesbox}>
-        <div  className={styles.scroller}>
+        <div className={styles.scroller}>
           {articles}
           <div className={styles.anchor} />
         </div>
