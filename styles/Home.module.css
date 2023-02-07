@@ -120,11 +120,15 @@
 .chatbox input {
   height: 10vh;
   width: 80%;
+  border-radius: 20px;
+  font-family: 'Nunito Sans', sans-serif;
 }
 
 .chatbox button {
   height: 10vh;
   width: 20%;
+  border-radius: 20px;
+  font-family: 'Nunito Sans', sans-serif;
 }
 
 .messagesbox {
@@ -133,6 +137,7 @@
   height: 79.5vh;
   display: inline-block;
   padding-bottom: 20px;
+  font-family: 'Nunito Sans', sans-serif;
 }
 
 .scroller * {
@@ -160,6 +165,16 @@
   font-size: x-small;
 }
 
+.chatname {
+  display: flex;
+  justify-content: center;
+  background-color: #b6b6b6;
+
+  box-shadow: 0.5px 5px 7px #b6b6b6;
+  border-bottom-left-radius: 7px;
+  font-family: 'Nunito Sans', sans-serif;
+}
+
 @media (max-width: 600px) {
   .grid {
     width: 100%;
@@ -183,8 +198,9 @@
 
 .mainpageleft {
   background-color: #f2f2f2;
-  border-radius: 30px;
   min-width: 50vw;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
 }
 
 .mainpageright {
@@ -192,5 +208,6 @@
   height: 100vh;
   background-color: #e0e0e0;
   justify-content: center;
-  border-radius: 30px;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
 }
