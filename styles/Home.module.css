@@ -115,17 +115,17 @@
   position: absolute;
   bottom: 0.5vh;
   width: 48%;
-  height: 10.5vh;
+  height: 7.5vh;
 }
 .chatbox input {
-  height: 10vh;
+  height: 7vh;
   width: 80%;
   border-radius: 20px;
   font-family: 'Nunito Sans', sans-serif;
 }
 
 .chatbox button {
-  height: 10vh;
+  height: 7vh;
   width: 20%;
   border-radius: 20px;
   font-family: 'Nunito Sans', sans-serif;
@@ -134,7 +134,7 @@
 .messagesbox {
   overflow-y: scroll;
   width: 100%;
-  height: 79.5vh;
+  height: 82.5vh;
   display: inline-block;
   padding-bottom: 20px;
   font-family: 'Nunito Sans', sans-serif;
@@ -194,20 +194,18 @@
   width: 100vw;
   display: grid;
   grid-template-columns: 50% 50% 100px;
+  background-color: #f2f2f2;
 }
 
 .mainpageleft {
   background-color: #f2f2f2;
   min-width: 50vw;
-  border-bottom-left-radius: 30px;
-  border-bottom-right-radius: 30px;
 }
 
 .mainpageright {
   min-width: 48vw;
-  height: 100vh;
+  height: 99vh;
   background-color: #e0e0e0;
   justify-content: center;
   border-bottom-left-radius: 30px;
-  border-bottom-right-radius: 30px;
 }
