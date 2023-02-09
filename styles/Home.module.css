@@ -112,16 +112,32 @@
 }
 
 .chatbox {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
+  position: absolute;
+  bottom: 0.5vh;
+  width: 48%;
+  height: 7.5vh;
 }
+.chatbox input {
+  height: 7vh;
+  width: 80%;
+  border-radius: 20px;
+  font-family: 'Nunito Sans', sans-serif;
+}
+
+.chatbox button {
+  height: 7vh;
+  width: 20%;
+  border-radius: 20px;
+  font-family: 'Nunito Sans', sans-serif;
+}
+
 .messagesbox {
   overflow-y: scroll;
   width: 100%;
-  height: 24rem;
+  height: 82.5vh;
   display: inline-block;
   padding-bottom: 20px;
+  font-family: 'Nunito Sans', sans-serif;
 }
 
 .scroller * {
@@ -149,11 +165,14 @@
   font-size: x-small;
 }
 
-.input {
-  height: 5rem;
-  width: 30rem;
-  margin-bottom: 0.5rem;
-  
+.chatname {
+  display: flex;
+  justify-content: center;
+  background-color: #b6b6b6;
+
+  box-shadow: 0.5px 5px 7px #b6b6b6;
+  border-bottom-left-radius: 7px;
+  font-family: 'Nunito Sans', sans-serif;
 }
 
 @media (max-width: 600px) {
@@ -171,18 +190,22 @@
 }
 
 .mainpagedivision {
+  height: 100vh;
+  width: 100vw;
   display: grid;
-  padding: 20px;
   grid-template-columns: 50% 50% 100px;
+  background-color: #f2f2f2;
 }
 
 .mainpageleft {
   background-color: #f2f2f2;
-  height: 500px;
+  min-width: 50vw;
 }
 
 .mainpageright {
+  min-width: 48vw;
+  height: 99vh;
   background-color: #e0e0e0;
-  height: 500px;
   justify-content: center;
+  border-bottom-left-radius: 30px;
 }

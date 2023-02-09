@@ -1,4 +1,4 @@
-import { Box, Button, Checkbox, Container, FormControlLabel, FormGroup, Grid, Typography, FormControl } from '@mui/material'
+import { Box, Button, Checkbox, Container, FormControlLabel, FormGroup, Grid, Typography, FormControl, colors } from '@mui/material'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -88,13 +88,13 @@ const Home = (props: {history: any}) => {
             <title>Saamesõbraks</title>
           </Head>
           <Box>
-            <Typography variant='h3' sx={{ textAlign: 'center' }}>
+            <Typography variant='h3' sx={{ textAlign: 'center', fontFamily: 'Nunito Sans'}}>
               <b>Find a friend for life!</b>
             </Typography>
             <form onSubmit={sendToMatching}>
               <Box className={styles.descriptionspecific} >
                 <Button variant="contained" type="submit" >Text Chat</Button>
-                <Button variant="contained" type="submit" >Voice Chat</Button>
+                <Button variant="contained" type="submit" sx={{bgcolor: '#00cc00'}} >Voice Chat</Button>
               </Box>
               <FormGroup>
                 <Box className={styles.descriptionspecific}>
@@ -106,7 +106,7 @@ const Home = (props: {history: any}) => {
           </Box>
         </Box>
         <Box className={styles.mainpageright}>
-          <Typography variant='h3' sx={{ textAlign: 'center' }}>
+          <Typography variant='h5' className={styles.chatname}>
             You are chatting with {kms}
           </Typography>
           <Articles channelName={kms} />
