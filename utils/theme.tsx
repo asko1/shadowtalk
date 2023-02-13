@@ -1,16 +1,18 @@
 import { createTheme } from "@mui/material/styles";
 
 export const theme = createTheme({
-        palette: {
-            mode: 'light',
-            primary: {
-                main: '#1976d2',
-            },
-            secondary: {
-                main: '#2e7d32',
-            }
+    palette: {
+        mode: 'light',
+        primary: {
+            main: '#3862ab',
         },
-        typography: {
-            "fontFamily": "'Nunito Sans', sans-serif"
-        },
-    })
+        secondary: {
+            main: '#38ac96',
+        }
+    },
+    typography: {
+        "fontFamily": "'Nunito Sans', sans-serif"
+    },
+})
+
+export default theme

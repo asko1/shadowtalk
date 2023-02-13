@@ -11,6 +11,8 @@ import Articles from "../components/Articles";
 import { getHistoricalMessages } from "../lib/history";
 import Voicechat from '../components/Voicechat';
 import React, { SyntheticEvent, useState } from 'react';
+import Theme from "../utils/theme"
+
 
 configureAbly({
   authUrl: `${process.env.NEXT_PUBLIC_URL || process.env.NEXT_PUBLIC_HOSTNAME}/api/createTokenRequest`,
@@ -33,14 +35,16 @@ const Home = (props: {history: any}) => {
     const interestElements: JSX.Element[] = []
     interests.map((interest, key) => {
       interestElements.push(
-        <FormControlLabel
-          control={<Checkbox />}
-          label={interest}
-          name={interest}
-          key={key}
-          onChange={onChange}
-          sx={{ color: '#5cb567' , '&.Mui-checked':{color:'#5cb567'}}}
-        />
+        <ThemeProvider theme={Theme}>
+          <FormControlLabel
+            control={<Checkbox />}
+            label={interest}
+            name={interest}
+            key={key}
+            onChange={onChange}
+            sx={{ color: '#5cb567' , '&.Mui-checked':{color:'primary'}}}
+          />
+        </ThemeProvider>
       )
     })
     return interestElements
@@ -81,38 +85,40 @@ const Home = (props: {history: any}) => {
   }
 
   return (
-    <div>
-      <Box className={styles.mainpagedivision}>
-        <Box className={styles.mainpageleft}>
-          <Head>
-            <title>Saamesõbraks</title>
-          </Head>
-          <Box>
-            <Typography variant='h3' sx={{ textAlign: 'center', fontFamily: 'Nunito Sans'}}>
-              <b>Find a friend for life!</b>
+    <ThemeProvider theme={Theme}>
+      <div>
+        <Box className={styles.mainpagedivision}>
+          <Box className={styles.mainpageleft}>
+            <Head>
+              <title>Saamesõbraks</title>
+            </Head>
+            <Box>
+              <Typography variant='h3' sx={{ textAlign: 'center', fontFamily: 'Nunito Sans'}}>
+                <b>Find a friend for life!</b>
+              </Typography>
+              <form onSubmit={sendToMatching}>
+                  <Box className={styles.descriptionspecific} >
+                    <Button variant="contained" type="submit" color="primary" >Text Chat</Button>
+                    <Button variant="contained" type="submit" color="secondary" >Voice Chat</Button>
+                  </Box>
+                <FormGroup>
+                  <Box className={styles.descriptionspecific}>
+                    {populateInterests()}
+                  </Box>
+                </FormGroup>
+              </form>
+                <Participants channelName='waiting - ' />
+            </Box>
+          </Box>
+          <Box className={styles.mainpageright}>
+            <Typography variant='h5' className={styles.chatname}>
+              You are chatting with {kms}
             </Typography>
-            <form onSubmit={sendToMatching}>
-              <Box className={styles.descriptionspecific} >
-                <Button variant="contained" type="submit" >Text Chat</Button>
-                <Button variant="contained" type="submit" sx={{bgcolor: '#00cc00'}} >Voice Chat</Button>
-              </Box>
-              <FormGroup>
-                <Box className={styles.descriptionspecific}>
-                  {populateInterests()}
-                </Box>
-              </FormGroup>
-            </form>
-              <Participants channelName='waiting - ' />
+            <Articles channelName={kms} />
           </Box>
         </Box>
-        <Box className={styles.mainpageright}>
-          <Typography variant='h5' className={styles.chatname}>
-            You are chatting with {kms}
-          </Typography>
-          <Articles channelName={kms} />
-        </Box>
-      </Box>
     </div>
+    </ThemeProvider>
   )
 }
 
