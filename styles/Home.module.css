@@ -1,15 +1,17 @@
 .container {
   padding: 0 2rem;
+  overflow-y: hidden;
 }
 
 .main {
   min-height: 100vh;
   padding: 4rem 0;
   flex: 1;
-  display: flex;
+  display: block;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
 
 .footer {
@@ -78,11 +80,12 @@
   padding: 1.5rem;
   text-align: left;
   color: inherit;
-  text-decoration: none;
   border: 1px solid #eaeaea;
   border-radius: 10px;
   transition: color 0.15s ease, border-color 0.15s ease;
-  max-width: 300px;
+  max-width: auto;
+  align-items: left;
+  overflow-wrap: break-word;
 }
 
 .card:hover,
@@ -108,6 +111,70 @@
   margin-left: 0.5rem;
 }
 
+.chatbox {
+  position: absolute;
+  bottom: 0.5vh;
+  width: 48%;
+  height: 7.5vh;
+}
+.chatbox input {
+  height: 7vh;
+  width: 80%;
+  border-radius: 20px;
+  font-family: 'Nunito Sans', sans-serif;
+}
+
+.chatbox button {
+  height: 7vh;
+  width: 20%;
+  border-radius: 20px;
+  font-family: 'Nunito Sans', sans-serif;
+}
+
+.messagesbox {
+  overflow-y: scroll;
+  width: 100%;
+  height: 82.5vh;
+  display: inline-block;
+  padding-bottom: 20px;
+  font-family: 'Nunito Sans', sans-serif;
+}
+
+.scroller * {
+  overflow-anchor: none;
+}
+
+.scroller b {
+  font-size: medium;
+}
+
+.scroller text {
+  font-size: x-small;
+}
+
+.scroller span {
+  font-size: small;
+}
+
+.anchor {
+  overflow-anchor: auto;
+  height: 1px;
+}
+
+.timestamp {
+  font-size: x-small;
+}
+
+.chatname {
+  display: flex;
+  justify-content: center;
+  background-color: #b6b6b6;
+
+  box-shadow: 0.5px 5px 7px #b6b6b6;
+  border-bottom-left-radius: 7px;
+  font-family: 'Nunito Sans', sans-serif;
+}
+
 @media (max-width: 600px) {
   .grid {
     width: 100%;
@@ -120,4 +187,25 @@
   gap:20px;
   justify-content: center;
   margin: 20px 0;
+}
+
+.mainpagedivision {
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  grid-template-columns: 50% 50% 100px;
+  background-color: #f2f2f2;
+}
+
+.mainpageleft {
+  background-color: #f2f2f2;
+  min-width: 50vw;
+}
+
+.mainpageright {
+  min-width: 48vw;
+  height: 99vh;
+  background-color: #e0e0e0;
+  justify-content: center;
+  border-bottom-left-radius: 30px;
 }
