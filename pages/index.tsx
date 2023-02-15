@@ -1,4 +1,4 @@
-import { Box, Button, Checkbox, Container, FormControlLabel, FormGroup, Grid, Typography, FormControl } from '@mui/material'
+import { Box, Button, Checkbox, Container, FormControlLabel, FormGroup, Grid, Typography, FormControl, colors } from '@mui/material'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -14,14 +14,14 @@ import Voicechat from '../components/Voicechat';
 import React, { SyntheticEvent, useState } from 'react';
 
 configureAbly({
-  authUrl: `${process.env.VERCEL_URL || process.env.NEXT_PUBLIC_HOSTNAME}/api/createTokenRequest`,
+  authUrl: `${process.env.NEXT_PUBLIC_URL || process.env.NEXT_PUBLIC_HOSTNAME}/api/createTokenRequest`,
 });
 
 const ably = assertConfiguration();
 const interests = ["Gaming", "Music", "Drawing"]
 
 const Home = (props: {history: any}) => {
-  const [kms, setKms] = useState('waitNO')
+  const [kms, setKms] = useState('')
   const test = <Participants channelName={kms}/>
 
   let formInterests: {[key: string]: any} = []
@@ -94,13 +94,12 @@ const Home = (props: {history: any}) => {
   }
   
   async function sendToMatching(event: { preventDefault: () => void; }) {
-    const stuff = {
-      interests: formData,
-      userId: ably.auth.clientId
-    }
-    console.log(stuff)
+    let stuff: any = {}
+    stuff[`${ably.auth.clientId}`] = Object.values(formData)
+      //{`${ably.auth.clientId}` = Object.values(formData)}
+    
+    console.log(stuff, 'stuff')
     event.preventDefault()
-    console.log(formData)
     const res = await fetch('/api/matching', {
       method: "POST",
       headers: {
@@ -110,6 +109,11 @@ const Home = (props: {history: any}) => {
     })
 
     if (res.status === 201) {
+      const body = await res.json()
+      console.log(body.channel as string)
+      setKms(body.channel as string)
+    }
+    if (res.status === 200) {
       const body = await res.json()
       console.log(body.channel as string)
       setKms(body.channel as string)
@@ -124,14 +128,13 @@ const Home = (props: {history: any}) => {
             <title>Saamesõbraks</title>
           </Head>
           <Box>
-            <Typography variant='h3' sx={{ textAlign: 'center' }}>
-              Find a friend!
+            <Typography variant='h3' sx={{ textAlign: 'center', fontFamily: 'Nunito Sans'}}>
+              <b>Find a friend for life!</b>
             </Typography>
             <form onSubmit={sendToMatching}>
               <Box className={styles.descriptionspecific} >
                 <Button variant="contained" type="submit" >Text Chat</Button>
-                <Button variant="contained" type="submit" >Voice Chat</Button>
-                <Voicechat></Voicechat>
+                <Button variant="contained" type="submit" sx={{bgcolor: '#00cc00'}} >Voice Chat</Button>
               </Box>
               <FormGroup>
                 <Box className={styles.descriptionspecific}>
@@ -139,11 +142,13 @@ const Home = (props: {history: any}) => {
                 </Box>
               </FormGroup>
             </form>
-              <Participants channelName='waiting' />
+              <Participants channelName='waiting - ' />
           </Box>
         </Box>
         <Box className={styles.mainpageright}>
-          <Participants channelName={kms} />
+          <Typography variant='h5' className={styles.chatname}>
+            You are chatting with {kms}
+          </Typography>
           <Articles channelName={kms} />
         </Box>
       </Box>
