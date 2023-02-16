@@ -1,0 +1,23 @@
+.container {
+    overflow-y: hidden;
+}
+
+.mainpage {
+    height: 100vh;
+    width: 100vw;
+
+}
+
+.mainpageleft {
+
+}
+
+.mainpageright {
+    
+}
+
+.descriptionspecific {
+    display:flex;
+    justify-content: center;
+}
+

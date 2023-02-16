@@ -1,4 +1,4 @@
-import { Box, Button, Checkbox, Container, FormControlLabel, FormGroup, Grid, Typography, FormControl } from '@mui/material'
+import { Box, Button, Checkbox, Container, FormControlLabel, FormGroup, Grid, Typography, FormControl, colors } from '@mui/material'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -9,19 +9,20 @@ import Participants from "../components/Participants";
 import { assertConfiguration, configureAbly } from "@ably-labs/react-hooks";
 import Articles from "../components/Articles";
 import { getHistoricalMessages } from "../lib/history";
-import {isMobile} from 'react-device-detect';
 import Voicechat from '../components/Voicechat';
 import React, { SyntheticEvent, useState } from 'react';
+import MobileView from '../components/MobileView';
+import { isMobile } from 'react-device-detect';
 
 configureAbly({
-  authUrl: `${process.env.VERCEL_URL || process.env.NEXT_PUBLIC_HOSTNAME}/api/createTokenRequest`,
+  authUrl: `${process.env.NEXT_PUBLIC_URL || process.env.NEXT_PUBLIC_HOSTNAME}/api/createTokenRequest`,
 });
 
 const ably = assertConfiguration();
 const interests = ["Gaming", "Music", "Drawing"]
 
 const Home = (props: {history: any}) => {
-  const [kms, setKms] = useState('waitNO')
+  const [kms, setKms] = useState('')
   const test = <Participants channelName={kms}/>
 
   let formInterests: {[key: string]: any} = []
@@ -46,46 +47,7 @@ const Home = (props: {history: any}) => {
     })
     return interestElements
   }
-  if(isMobile) {
-    return (
-      <div>
-      <Box>
-        <Box className={styles.mainpageleft}>
-          <Head>
-            <title>Saamesõbraks</title>
-          </Head>
-          <Box>
-            <Typography variant='h3' sx={{ textAlign: 'center' }}>
-              Welcome to Saamesõbraks
-            </Typography>
 
-              <Box className={styles.descriptionspecific} >
-                <Button variant="contained" type="submit" >Text Chat</Button>
-                <Button variant="contained" type="submit" >Voice Chat</Button>
-              </Box>
-              <FormGroup>
-                <Box className={styles.descriptionspecific}>
-                  {populateInterests()}
-                </Box>
-              </FormGroup>
-          </Box>
-        </Box>
-        <Box className={styles.mainpageright}>
-        <Typography variant='h3' sx={{ textAlign: 'center' }}>
-              Text chat
-        </Typography>
-        <Box className={styles.container}>
-          <h1>Realtime Chat</h1>
-          <h3>Participants</h3>
-            <Participants />
-            <Articles history={props.history} />
-        </Box>
-        </Box>
-      </Box>
-    </div>
-    )
-  }
-  
   function onChange(event: SyntheticEvent<Element, Event>) {
     let newFormData = {...formData}
     // @ts-ignore
@@ -94,13 +56,12 @@ const Home = (props: {history: any}) => {
   }
   
   async function sendToMatching(event: { preventDefault: () => void; }) {
-    const stuff = {
-      interests: formData,
-      userId: ably.auth.clientId
-    }
-    console.log(stuff)
+    let stuff: any = {}
+    stuff[`${ably.auth.clientId}`] = Object.values(formData)
+      //{`${ably.auth.clientId}` = Object.values(formData)}
+    
+    console.log(stuff, 'stuff')
     event.preventDefault()
-    console.log(formData)
     const res = await fetch('/api/matching', {
       method: "POST",
       headers: {
@@ -114,41 +75,57 @@ const Home = (props: {history: any}) => {
       console.log(body.channel as string)
       setKms(body.channel as string)
     }
+    if (res.status === 200) {
+      const body = await res.json()
+      console.log(body.channel as string)
+      setKms(body.channel as string)
+    }
   }
+  if(isMobile){
+    return(
+      <MobileView
+      sendToMatching={sendToMatching} 
+      populateInterests={populateInterests()}
+      kms={kms}
+      />
 
+    )
+  } else {
   return (
-    <div>
-      <Box className={styles.mainpagedivision}>
-        <Box className={styles.mainpageleft}>
-          <Head>
-            <title>Saamesõbraks</title>
-          </Head>
-          <Box>
-            <Typography variant='h3' sx={{ textAlign: 'center' }}>
-              Find a friend!
-            </Typography>
-            <form onSubmit={sendToMatching}>
-              <Box className={styles.descriptionspecific} >
-                <Button variant="contained" type="submit" >Text Chat</Button>
-                <Button variant="contained" type="submit" >Voice Chat</Button>
-                <Voicechat></Voicechat>
-              </Box>
-              <FormGroup>
-                <Box className={styles.descriptionspecific}>
-                  {populateInterests()}
+      <div>
+        <Box className={styles.mainpagedivision}>
+          <Box className={styles.mainpageleft}>
+            <Head>
+              <title>Saamesõbraks</title>
+            </Head>
+            <Box>
+              <Typography variant='h3' sx={{ textAlign: 'center', fontFamily: 'Nunito Sans'}}>
+                <b>Find a friend for life!</b>
+              </Typography>
+              <form onSubmit={sendToMatching}>
+                <Box className={styles.descriptionspecific} >
+                  <Button variant="contained" type="submit" >Text Chat</Button>
+                  <Button variant="contained" type="submit" sx={{bgcolor: '#00cc00'}} >Voice Chat</Button>
                 </Box>
-              </FormGroup>
-            </form>
-              <Participants channelName='waiting' />
+                <FormGroup>
+                  <Box className={styles.descriptionspecific}>
+                    {populateInterests()}
+                  </Box>
+                </FormGroup>
+              </form>
+                <Participants channelName='waiting - ' />
+            </Box>
+          </Box>
+          <Box className={styles.mainpageright}>
+            <Typography variant='h5' className={styles.chatname}>
+              You are chatting with {kms}
+            </Typography>
+            <Articles channelName={kms} />
           </Box>
         </Box>
-        <Box className={styles.mainpageright}>
-          <Participants channelName={kms} />
-          <Articles channelName={kms} />
-        </Box>
-      </Box>
-    </div>
-  )
+      </div>
+    )
+  }
 }
 
 export async function getStaticProps() {
