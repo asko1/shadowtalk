@@ -59,7 +59,7 @@ export default function Articles(props: { channelName: ChannelParameters; }) {
     setHeadlineText("");
     inputBox?.focus();
   };
-  
+
   let styles = (isMobile ? mobile : homeStyles);
   return (
     <div>
@@ -83,7 +83,6 @@ export default function Articles(props: { channelName: ChannelParameters; }) {
           onKeyPress={handleFormSubmission}
           className={styles.input}
         />
-        
         <Button variant="contained" 
                 type="submit"
                 disabled={headlineTextIsEmpty}
