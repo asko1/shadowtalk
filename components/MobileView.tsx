@@ -8,8 +8,8 @@ export default function MobileView(props: any) {
         <Container>
             <Box className={mobile.mainpage}>
                 <Accordion>
-                    <AccordionSummary>
-                    <Typography variant='h3' sx={{ textAlign: 'center', fontFamily: 'Nunito Sans'}}>
+                    <AccordionSummary className={mobile.accordionSummary}>
+                    <Typography variant='h4' sx={{ textAlign: 'center', fontFamily: 'Nunito Sans'}}>
                         <b>Find a friend for life!</b>
                     </Typography>
                     </AccordionSummary>
