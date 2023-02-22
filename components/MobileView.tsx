@@ -4,12 +4,16 @@ import mobile from "../styles/mobile.module.css";
 import Articles from "./Articles";
 
 export default function MobileView(props: any) {
+
+    const [expanded, setExpanded] = useState(true);
     
     return(
         <Container>
             <Box className={mobile.mainpage}>
                 <Accordion 
                 className={mobile.accordion}
+                expanded={expanded}
+                onClick={()=>setExpanded(!expanded)}
                 >
                     <AccordionSummary className={mobile.accordionSummary}>
                     <Typography variant='h4' sx={{ textAlign: 'center', fontFamily: 'Nunito Sans'}}>
@@ -17,7 +21,7 @@ export default function MobileView(props: any) {
                     </Typography>
                     </AccordionSummary>
                     <AccordionDetails>
-                        <form onSubmit={props.sendToMatching}>
+                        <form onSubmit={props.sendToMatching} onClick={()=>setExpanded(!expanded)}>
                             <Box className={mobile.descriptionspecific} >
                                 <Button 
                                 variant="contained" 
