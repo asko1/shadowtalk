@@ -1,4 +1,5 @@
-import { Accordion, AccordionDetails, AccordionSummary, Box, Button, Container, FormGroup, Typography } from "@mui/material";
+import { Accordion, AccordionDetails, AccordionSummary, Box, Button, Container, FormGroup, makeStyles, Typography } from "@mui/material";
+import { height } from "@mui/system";
 import { useState } from "react";
 import mobile from "../styles/mobile.module.css";
 import Articles from "./Articles";
@@ -13,19 +14,21 @@ export default function MobileView(props: any) {
                 <Accordion 
                 className={mobile.accordion}
                 expanded={expanded}
-                onClick={()=>setExpanded(!expanded)}
                 >
-                    <AccordionSummary className={mobile.accordionSummary}>
+                    <AccordionSummary className={mobile.accordionSummary}
+                    onClick={()=>setExpanded(!expanded)}
+                    >
                     <Typography variant='h4' sx={{ textAlign: 'center', fontFamily: 'Nunito Sans'}}>
                         <b>Find a friend for life!</b>
                     </Typography>
                     </AccordionSummary>
                     <AccordionDetails>
-                        <form onSubmit={props.sendToMatching} onClick={()=>setExpanded(!expanded)}>
+                        <form onSubmit={props.sendToMatching}>
                             <Box className={mobile.descriptionspecific} >
                                 <Button 
                                 variant="contained" 
                                 type="submit"
+                                onClick={()=>setExpanded(!expanded)}
                                 >Text Chat</Button>
                                 <Button 
                                 variant="contained" 
