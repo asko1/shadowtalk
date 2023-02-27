@@ -1,14 +1,10 @@
-import { Box, Button, Checkbox, Container, FormControlLabel, FormGroup, Grid, Typography, FormControl, colors } from '@mui/material'
-import type { NextPage } from 'next'
+import { Box, Button, Checkbox, FormControlLabel, FormGroup, Typography, } from '@mui/material'
 import Head from 'next/head'
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import homeStyles from '../styles/Home.module.css'
 import Participants from "../components/Participants";
 import { assertConfiguration, configureAbly } from "@ably-labs/react-hooks";
 import Articles from "../components/Articles";
 import { getHistoricalMessages } from "../lib/history";
-import Voicechat from '../components/Voicechat';
 import React, { SyntheticEvent, useState } from 'react';
 import MobileView from '../components/MobileView';
 import { isMobile } from 'react-device-detect';
@@ -92,8 +88,8 @@ const Home = (props: {history: any}) => {
   } else {
   return (
       <div>
-        <Box className={styles.mainpagedivision}>
-          <Box className={styles.mainpageleft}>
+        <Box className={homeStyles.mainpagedivision}>
+          <Box className={homeStyles.mainpageleft}>
             <Head>
               <title>Saamesõbraks</title>
             </Head>
@@ -102,12 +98,12 @@ const Home = (props: {history: any}) => {
                 <b>Find a friend for life!</b>
               </Typography>
               <form onSubmit={sendToMatching}>
-                <Box className={styles.descriptionspecific} >
+                <Box className={homeStyles.descriptionspecific} >
                   <Button variant="contained" type="submit" >Text Chat</Button>
                   <Button variant="contained" type="submit" sx={{bgcolor: '#00cc00'}} >Voice Chat</Button>
                 </Box>
                 <FormGroup>
-                  <Box className={styles.descriptionspecific}>
+                  <Box className={homeStyles.descriptionspecific}>
                     {populateInterests()}
                   </Box>
                 </FormGroup>
@@ -115,8 +111,8 @@ const Home = (props: {history: any}) => {
                 <Participants channelName='waiting - ' />
             </Box>
           </Box>
-          <Box className={styles.mainpageright}>
-            <Typography variant='h5' className={styles.chatname}>
+          <Box className={homeStyles.mainpageright}>
+            <Typography variant='h5' className={homeStyles.chatname}>
               You are chatting with {kms}
             </Typography>
             <Articles channelName={kms} />

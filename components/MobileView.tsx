@@ -1,7 +1,6 @@
 import { Accordion, AccordionDetails, AccordionSummary, Box, Button, Container, FormGroup, makeStyles, Typography } from "@mui/material";
-import { height } from "@mui/system";
 import { useState } from "react";
-import mobile from "../styles/mobile.module.css";
+import mobileStyle from "../styles/mobile.module.css";
 import Articles from "./Articles";
 
 export default function MobileView(props: any) {
@@ -10,12 +9,12 @@ export default function MobileView(props: any) {
     
     return(
         <Container>
-            <Box className={mobile.mainpage}>
+            <Box className={mobileStyle.mainpage}>
                 <Accordion 
-                className={mobile.accordion}
+                className={mobileStyle.accordion}
                 expanded={expanded}
                 >
-                    <AccordionSummary className={mobile.accordionSummary}
+                    <AccordionSummary className={mobileStyle.accordionSummary}
                     onClick={()=>setExpanded(!expanded)}
                     >
                     <Typography variant='h4' sx={{ textAlign: 'center', fontFamily: 'Nunito Sans'}}>
@@ -24,7 +23,7 @@ export default function MobileView(props: any) {
                     </AccordionSummary>
                     <AccordionDetails>
                         <form onSubmit={props.sendToMatching}>
-                            <Box className={mobile.descriptionspecific} >
+                            <Box className={mobileStyle.descriptionspecific} >
                                 <Button 
                                 variant="contained" 
                                 type="submit"
@@ -37,7 +36,7 @@ export default function MobileView(props: any) {
                                 >Voice Chat</Button>
                             </Box>
                             <FormGroup>
-                                <Box className={mobile.descriptionspecific}>
+                                <Box className={mobileStyle.descriptionspecific}>
                                 {props.populateInterests}
                                 </Box>
                             </FormGroup>
