@@ -22,7 +22,6 @@ const Home: NextPage = () => {
           <Box className={styles.descriptionspecific} >
             <Button variant="contained" type="submit" >Text Chat</Button>
             <Button variant="contained" type="submit" >Voice Chat</Button>
-            <Voicechat></Voicechat>
           </Box>
           <FormGroup>
             <Box className={styles.descriptionspecific}>
