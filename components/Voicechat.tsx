@@ -5,7 +5,6 @@ import style from "../styles/Home.module.css";
 import { useState } from "react";
 
 export default function Voicechat() {
-
     const [selected, setSelected] = useState<boolean>(false);
 
     return(
