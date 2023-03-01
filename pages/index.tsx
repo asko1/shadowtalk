@@ -1,11 +1,14 @@
-import { Box, Button, Checkbox, FormControlLabel, FormGroup, Typography } from '@mui/material'
+
+import { Box, Button, Checkbox, FormControlLabel, FormGroup, Typography, } from '@mui/material'
 import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import homeStyles from '../styles/Home.module.css'
 import Participants from "../components/Participants";
 import { assertConfiguration, configureAbly } from "@ably-labs/react-hooks";
 import Articles from "../components/Articles";
 import { getHistoricalMessages } from "../lib/history";
 import React, { SyntheticEvent, useState } from 'react';
+import MobileView from '../components/MobileView';
+import { isMobile } from 'react-device-detect';
 
 configureAbly({
   authUrl: `${process.env.NEXT_PUBLIC_URL || process.env.NEXT_PUBLIC_HOSTNAME}/api/createTokenRequest`,
@@ -74,41 +77,51 @@ const Home = (props: {history: any}) => {
       setKms(body.channel as string)
     }
   }
+  if(isMobile){
+    return(
+      <MobileView
+      sendToMatching={sendToMatching} 
+      populateInterests={populateInterests()}
+      kms={kms}
+      />
 
+    )
+  } else {
   return (
-    <div>
-      <Box className={styles.mainpagedivision}>
-        <Box className={styles.mainpageleft}>
-          <Head>
-            <title>Saamesõbraks</title>
-          </Head>
-          <Box>
-            <Typography variant='h3' sx={{ textAlign: 'center', fontFamily: 'Nunito Sans'}}>
-              <b>Find a friend for life!</b>
-            </Typography>
-            <form onSubmit={sendToMatching}>
-              <Box className={styles.descriptionspecific} >
-                <Button variant="contained" type="submit" >Text Chat</Button>
-                <Button variant="contained" type="submit" sx={{bgcolor: '#00cc00'}} >Voice Chat</Button>
-              </Box>
-              <FormGroup>
-                <Box className={styles.descriptionspecific}>
-                  {populateInterests()}
+      <div>
+        <Box className={homeStyles.mainpagedivision}>
+          <Box className={homeStyles.mainpageleft}>
+            <Head>
+              <title>Saamesõbraks</title>
+            </Head>
+            <Box>
+              <Typography variant='h3' sx={{ textAlign: 'center', fontFamily: 'Nunito Sans'}}>
+                <b>Find a friend for life!</b>
+              </Typography>
+              <form onSubmit={sendToMatching}>
+                <Box className={homeStyles.descriptionspecific} >
+                  <Button variant="contained" type="submit" >Text Chat</Button>
+                  <Button variant="contained" type="submit" sx={{bgcolor: '#00cc00'}} >Voice Chat</Button>
                 </Box>
-              </FormGroup>
-            </form>
-              <Participants channelName='waiting - ' />
+                <FormGroup>
+                  <Box className={homeStyles.descriptionspecific}>
+                    {populateInterests()}
+                  </Box>
+                </FormGroup>
+              </form>
+                <Participants channelName='waiting - ' />
+            </Box>
+          </Box>
+          <Box className={homeStyles.mainpageright}>
+            <Typography variant='h5' className={homeStyles.chatname}>
+              You are chatting with {kms}
+            </Typography>
+            <Articles channelName={kms} />
           </Box>
         </Box>
-        <Box className={styles.mainpageright}>
-          <Typography variant='h5' className={styles.chatname}>
-            You are chatting with {kms}
-          </Typography>
-          <Articles channelName={kms} />
-        </Box>
-      </Box>
-    </div>
-  )
+      </div>
+    )
+  }
 }
 
 export async function getStaticProps() {
