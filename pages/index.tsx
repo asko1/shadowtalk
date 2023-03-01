@@ -1,4 +1,4 @@
-import { Box, Button, Checkbox, FormControlLabel, FormGroup, Typography, } from '@mui/material'
+import { Box, Button, Checkbox, FormControlLabel, FormGroup, ThemeProvider, Typography, } from '@mui/material'
 import Head from 'next/head'
 import homeStyles from '../styles/Home.module.css'
 import Participants from "../components/Participants";
@@ -92,8 +92,8 @@ const Home = (props: {history: any}) => {
   return (
     <ThemeProvider theme={Theme}>
       <div>
-        <Box className={styles.mainpagedivision}>
-          <Box className={styles.mainpageleft}>
+        <Box className={homeStyles.mainpagedivision}>
+          <Box className={homeStyles.mainpageleft}>
             <Head>
               <title>Saamesõbraks</title>
             </Head>
