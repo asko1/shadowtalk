@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { ChannelParameters, useChannel } from "@ably-labs/react-hooks";
-import styles from "../styles/Home.module.css";
+import homeStyle from "../styles/Home.module.css";
 import MessageItem from "./MessageItem";
 import { Button } from "@mui/material";
 import SendIcon from '@mui/icons-material/Send';
+import { isMobile } from "react-device-detect";
+import mobileStyle from "../styles/mobile.module.css";
 
 /* 
 clearHistoryState:
@@ -58,6 +60,7 @@ export default function Articles(props: { channelName: ChannelParameters; }) {
     inputBox?.focus();
   };
 
+  let styles = (isMobile ? mobileStyle : homeStyle);
   return (
     <div>
       <div className={styles.messagesbox}>
@@ -80,7 +83,6 @@ export default function Articles(props: { channelName: ChannelParameters; }) {
           onKeyPress={handleFormSubmission}
           className={styles.input}
         />
-        
         <Button variant="contained" 
                 type="submit"
                 disabled={headlineTextIsEmpty}
