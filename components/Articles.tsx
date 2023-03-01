@@ -4,6 +4,7 @@ import styles from "../styles/Home.module.css";
 import MessageItem from "./MessageItem";
 import { Button } from "@mui/material";
 import SendIcon from '@mui/icons-material/Send';
+import Voicechat from "./Voicechat";
 
 /* 
 clearHistoryState:
@@ -69,6 +70,7 @@ export default function Articles(props: { channelName: ChannelParameters; }) {
       <div className={styles.chatbox}>
       {/* @ts-ignore */}
       <form onSubmit={handleFormSubmission}>
+        <Voicechat />
         <input
           type="textarea"
           ref={(element) => {
@@ -83,6 +85,7 @@ export default function Articles(props: { channelName: ChannelParameters; }) {
         
         <Button variant="contained" 
                 type="submit"
+                className={styles.sendButton}
                 disabled={headlineTextIsEmpty}
                 endIcon={<SendIcon />}>
           Send

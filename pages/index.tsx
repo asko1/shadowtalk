@@ -1,15 +1,10 @@
-import { Box, Button, Checkbox, Container, FormControlLabel, FormGroup, Grid, Typography, FormControl, colors } from '@mui/material'
-import type { NextPage } from 'next'
+import { Box, Button, Checkbox, FormControlLabel, FormGroup, Typography } from '@mui/material'
 import Head from 'next/head'
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Image from 'next/image'
 import styles from '../styles/Home.module.css'
-import local from "../styles/local.module.css"
 import Participants from "../components/Participants";
 import { assertConfiguration, configureAbly } from "@ably-labs/react-hooks";
 import Articles from "../components/Articles";
 import { getHistoricalMessages } from "../lib/history";
-import Voicechat from '../components/Voicechat';
 import React, { SyntheticEvent, useState } from 'react';
 
 configureAbly({
