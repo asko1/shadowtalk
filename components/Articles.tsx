@@ -6,6 +6,7 @@ import { Button } from "@mui/material";
 import SendIcon from '@mui/icons-material/Send';
 import { isMobile } from "react-device-detect";
 import mobileStyle from "../styles/mobile.module.css";
+import Voicechat from "./Voicechat";
 
 /* 
 clearHistoryState:
