@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { ChannelParameters, useChannel } from "@ably-labs/react-hooks";
 import homeStyle from "../styles/Home.module.css";
 import MessageItem from "./MessageItem";
-import { Button } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import SendIcon from '@mui/icons-material/Send';
 import { isMobile } from "react-device-detect";
 import mobileStyle from "../styles/mobile.module.css";
@@ -62,7 +62,7 @@ export default function Articles(props: { channelName: ChannelParameters; }) {
 
   let styles = (isMobile ? mobileStyle : homeStyle);
   return (
-    <div>
+    <Box style={{flex: "1 1 auto", display: "flex", flexFlow: "column"}}>
       <div className={styles.messagesbox}>
         <div className={styles.scroller}>
           {articles}
@@ -91,7 +91,7 @@ export default function Articles(props: { channelName: ChannelParameters; }) {
         </Button>
       </form>
       </div>
-    </div>
+    </Box>
   );
 }
 

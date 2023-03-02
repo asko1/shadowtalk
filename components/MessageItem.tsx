@@ -1,6 +1,5 @@
 import { ListItem, Typography } from "@mui/material";
 import ListItemText from '@mui/material/ListItemText';
-import styles from "../styles/Home.module.css";
 
 export default function MessageItem({index, headline}: any) {
     return (
