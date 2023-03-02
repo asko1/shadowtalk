@@ -8,7 +8,7 @@ export default function MobileView(props: any) {
     const [expanded, setExpanded] = useState(true);
     
     return(
-        <Container>
+        <Container className={mobileStyle.container}>
             <Box className={mobileStyle.mainpage}>
                 <Accordion 
                 className={mobileStyle.accordion}
@@ -43,10 +43,11 @@ export default function MobileView(props: any) {
                         </form>      
                     </AccordionDetails>    
                 </Accordion>
-                <Box>
+                <Box style={{display: "flex", flexFlow: "column", flex: '1 1 auto'}}>
             <Typography variant='h5'>
               You are chatting with {props.kms}
             </Typography>
+            
             <Articles channelName={props.kms} />
           </Box>
             </Box>
