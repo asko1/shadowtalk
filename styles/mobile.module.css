@@ -1,11 +1,11 @@
 .container {
-    overflow: hidden;
-  }
+  overflow: hidden;
+  padding: 0;
+}
 
 .mainpage {
-    height: 100vh;
-    width: 100vw;
-
+  height: 100vh;
+  width: 100vw;
 }
 
 .accordion {
@@ -17,55 +17,62 @@
 }
 
 .descriptionspecific {
-    display:flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .chatbox {
-    position: sticky;
-    width: 100%;
-    height: 7.5vh;
-  }
+  position: sticky;
+  width: 100%;
+  height: 7.5vh;
+}
 
-  .chatbox input {
-    height: 7vh;
-    width: 80%;
-    border-radius: 20px;
-    font-family: 'Nunito Sans', sans-serif;
-  }
-  
-  .chatbox button {
-    height: 7vh;
-    width: 20%;
-    border-radius: 20px;
-    font-family: 'Nunito Sans', sans-serif;
-  }
+.chatbox input {
+  height: 7vh;
+  width: 60%;
+  border-radius: 20px;
+  font-family: "Nunito Sans", sans-serif;
+  display: inline;
+}
 
-  .messagesbox {
-    overflow-y: scroll;
-    width: 100%;
-    height: 77.5vh;
-    display: inline-block;
-    font-family: 'Nunito Sans', sans-serif;
-  }
+.chatbox button {
+  height: 7vh;
+  width: 20%;
+  border-radius: 20px;
+  font-family: "Nunito Sans", sans-serif;
+}
 
-  .scroller * {
-    overflow-anchor: none;
-  }
-  
-  .scroller b {
-    font-size: medium;
-  }
-  
-  .scroller text {
-    font-size: x-small;
-  }
-  
-  .scroller span {
-    font-size: small;
-  }
-  
-  .anchor {
-    overflow-anchor: auto;
-    height: 1px;
-  }
+.messagesbox {
+  overflow-y: scroll;
+  width: 100%;
+  height: 77.5vh;
+  display: inline-block;
+  font-family: "Nunito Sans", sans-serif;
+}
+.voiceChat button {
+  height: 7vh;
+  border-radius: 0 0 0 20%;
+  width: 10%;
+  float: left;
+}
+
+.scroller * {
+  overflow-anchor: none;
+}
+
+.scroller b {
+  font-size: medium;
+}
+
+.scroller text {
+  font-size: x-small;
+}
+
+.scroller span {
+  font-size: small;
+}
+
+.anchor {
+  overflow-anchor: auto;
+  height: 1px;
+}
