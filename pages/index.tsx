@@ -109,7 +109,8 @@ const Home = (props: {history: any}) => {
                   <Button variant="contained" type="submit" sx={{bgcolor: '#00cc00'}} >Voice Chat</Button>
                 </Box>
               </form>
-              <Participants channelName='waiting - ' />
+              Currently online:
+                <Participants channelName='' />
             </Box>
           </Box>
           <Box className={homeStyles.mainpageright}>
