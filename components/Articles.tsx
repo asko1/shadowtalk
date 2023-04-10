@@ -6,6 +6,7 @@ import { Button } from "@mui/material";
 import SendIcon from '@mui/icons-material/Send';
 import { isMobile } from "react-device-detect";
 import mobileStyle from "../styles/mobile.module.css";
+import Voicechat from "./Voicechat";
 
 /* 
 clearHistoryState:
@@ -72,6 +73,7 @@ export default function Articles(props: { channelName: ChannelParameters; }) {
       <div className={styles.chatbox}>
       {/* @ts-ignore */}
       <form onSubmit={handleFormSubmission}>
+        <Voicechat />
         <input
           type="textarea"
           ref={(element) => {
@@ -85,6 +87,7 @@ export default function Articles(props: { channelName: ChannelParameters; }) {
         />
         <Button variant="contained" 
                 type="submit"
+                className={styles.sendButton}
                 disabled={headlineTextIsEmpty}
                 endIcon={<SendIcon />}>
           Send
