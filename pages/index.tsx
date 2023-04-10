@@ -92,22 +92,22 @@ const Home = (props: {history: any}) => {
         <Box className={homeStyles.mainpagedivision}>
           <Box className={homeStyles.mainpageleft}>
             <Head>
-              <title>Saamesõbraks</title>
+              <title>Shadowtalk</title>
             </Head>
             <Box>
               <Typography variant='h3' sx={{ textAlign: 'center', fontFamily: 'Nunito Sans'}}>
                 <b>Find a friend for life!</b>
               </Typography>
               <form onSubmit={sendToMatching}>
-                <Box className={homeStyles.descriptionspecific} >
-                  <Button variant="contained" type="submit" >Text Chat</Button>
-                  <Button variant="contained" type="submit" sx={{bgcolor: '#00cc00'}} >Voice Chat</Button>
-                </Box>
                 <FormGroup>
                   <Box className={homeStyles.descriptionspecific}>
                     {populateInterests()}
                   </Box>
                 </FormGroup>
+                <Box className={homeStyles.descriptionspecific} >
+                  <Button variant="contained" type="submit" >Text Chat</Button>
+                  <Button variant="contained" type="submit" sx={{bgcolor: '#00cc00'}} >Voice Chat</Button>
+                </Box>
               </form>
                 <Participants channelName='waiting - ' />
             </Box>
