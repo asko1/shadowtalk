@@ -15,7 +15,7 @@ configureAbly({
 });
 
 const ably = assertConfiguration();
-const interests = ["Gaming", "Music", "Drawing"]
+const interests = ["Gaming", "Music", "Art", "Sports", "Technology", "Cooking", "Traveling"]
 
 const Home = (props: {history: any}) => {
   const [kms, setKms] = useState('')
@@ -109,7 +109,7 @@ const Home = (props: {history: any}) => {
                   <Button variant="contained" type="submit" sx={{bgcolor: '#00cc00'}} >Voice Chat</Button>
                 </Box>
               </form>
-                <Participants channelName='waiting - ' />
+              <Participants channelName='waiting - ' />
             </Box>
           </Box>
           <Box className={homeStyles.mainpageright}>
