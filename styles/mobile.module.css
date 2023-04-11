@@ -76,3 +76,7 @@
   overflow-anchor: auto;
   height: 1px;
 }
+
+.NextButton {
+  width: 100%;
+}
