@@ -4,14 +4,14 @@ import {
   AccordionSummary,
   Box,
   Button,
-  Container,
   FormGroup,
-  makeStyles,
   Typography,
 } from "@mui/material";
 import { useState } from "react";
+import { isMobile } from "react-device-detect";
 import mobileStyle from "../styles/mobile.module.css";
 import Articles from "./Articles";
+import NextButton from "./buttons/NextButton";
 
 export default function MobileView(props: any) {
   const [expanded, setExpanded] = useState(true);
@@ -58,9 +58,12 @@ export default function MobileView(props: any) {
           </AccordionDetails>
         </Accordion>
         <Box>
-          <Typography variant="h5">
-            You are chatting with {props.kms}
-          </Typography>
+          <Box className={mobileStyle.topBar}>
+            <Typography variant="h5" className={mobileStyle.chatname}>
+              You are chatting with {props.kms}
+            </Typography>
+            <NextButton />
+          </Box>
           <Articles channelName={props.kms} />
         </Box>
       </Box>
