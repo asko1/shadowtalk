@@ -61,7 +61,7 @@ export default function MobileView(props: any) {
           <Typography variant="h5">
             You are chatting with {props.kms}
           </Typography>
-          <NextButton style={mobileStyle} />
+          <NextButton />
           <Articles channelName={props.kms} />
         </Box>
       </Box>

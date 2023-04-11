@@ -195,9 +195,9 @@
 
 .descriptionspecific {
   display: flex;
-  gap: 20px;
   justify-content: center;
   margin: 20px 0;
+  flex-flow: wrap;
 }
 
 .mainpagedivision {
@@ -219,16 +219,4 @@
   background-color: #e0e0e0;
   justify-content: center;
   border-radius: 0 0 0 2%;
-}
-
-.NextButton {
-  width: 100%;
-}
-
-.NextButton span {
-  width: 80%;
-}
-
-.NextButton svg {
-  width: 20%;
 }

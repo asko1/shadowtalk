@@ -118,18 +118,6 @@ const Home = (props: { history: any }) => {
                 <b>Find a friend for life!</b>
               </Typography>
               <form onSubmit={sendToMatching}>
-                <Box className={homeStyle.descriptionspecific}>
-                  <Button variant="contained" type="submit">
-                    Text Chat
-                  </Button>
-                  <Button
-                    variant="contained"
-                    type="submit"
-                    sx={{ bgcolor: "#00cc00" }}
-                  >
-                    Voice Chat
-                  </Button>
-                </Box>
                 <FormGroup>
                   <Box className={homeStyle.descriptionspecific}>
                     {populateInterests()}
@@ -157,7 +145,7 @@ const Home = (props: { history: any }) => {
               <Typography variant="h5" className={homeStyle.chatname}>
                 You are chatting with {kms}
               </Typography>
-              <NextButton style={homeStyle} />
+              <NextButton />
             </Box>
             <Articles channelName={kms} />
           </Box>
