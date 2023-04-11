@@ -24,7 +24,15 @@ configureAbly({
 });
 
 const ably = assertConfiguration();
-const interests = ["Gaming", "Music", "Art", "Sports", "Technology", "Cooking", "Traveling"]
+const interests = [
+  "Gaming",
+  "Music",
+  "Art",
+  "Sports",
+  "Technology",
+  "Cooking",
+  "Traveling",
+];
 
 const Home = (props: { history: any }) => {
   const [kms, setKms] = useState("");
@@ -127,13 +135,21 @@ const Home = (props: { history: any }) => {
                     {populateInterests()}
                   </Box>
                 </FormGroup>
-                <Box className={homeStyles.descriptionspecific} >
-                  <Button variant="contained" type="submit" >Text Chat</Button>
-                  <Button variant="contained" type="submit" sx={{bgcolor: '#00cc00'}} >Voice Chat</Button>
+                <Box className={homeStyle.descriptionspecific}>
+                  <Button variant="contained" type="submit">
+                    Text Chat
+                  </Button>
+                  <Button
+                    variant="contained"
+                    type="submit"
+                    sx={{ bgcolor: "#00cc00" }}
+                  >
+                    Voice Chat
+                  </Button>
                 </Box>
               </form>
               Currently online:
-                <Participants channelName='' />
+              <Participants channelName="" />
             </Box>
           </Box>
           <Box className={homeStyle.mainpageright}>
