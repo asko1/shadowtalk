@@ -184,6 +184,7 @@
 .topBar {
   display: flex;
   width: 100%;
+  justify-content: space-between;
 }
 
 @media (max-width: 600px) {
