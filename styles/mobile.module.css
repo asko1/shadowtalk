@@ -77,3 +77,12 @@
   overflow-anchor: auto;
   height: 1px;
 }
+
+.topBar {
+  width: 100%;
+  display: flex;
+}
+
+.chatname {
+  width: 80%;
+}

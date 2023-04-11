@@ -58,10 +58,12 @@ export default function MobileView(props: any) {
           </AccordionDetails>
         </Accordion>
         <Box>
-          <Typography variant="h5">
-            You are chatting with {props.kms}
-          </Typography>
-          <NextButton />
+          <Box className={mobileStyle.topBar}>
+            <Typography variant="h5" className={mobileStyle.chatname}>
+              You are chatting with {props.kms}
+            </Typography>
+            <NextButton />
+          </Box>
           <Articles channelName={props.kms} />
         </Box>
       </Box>
