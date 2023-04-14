@@ -225,3 +225,7 @@
 .NextButton {
   width: 10%;
 }
+
+.ExitButton {
+  max-width: 10%;
+}
