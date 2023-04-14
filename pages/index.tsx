@@ -12,10 +12,11 @@ import Participants from "../components/Participants";
 import { assertConfiguration, configureAbly } from "@ably-labs/react-hooks";
 import Articles from "../components/Articles";
 import { getHistoricalMessages } from "../lib/history";
-import React, { SyntheticEvent, useState } from "react";
+import React, { SyntheticEvent, useEffect, useState } from "react";
 import MobileView from "../components/MobileView";
 import { isMobile } from "react-device-detect";
 import NextButton from "../components/buttons/NextButton";
+import ExitButton from "../components/buttons/ExitButton";
 
 configureAbly({
   authUrl: `${
@@ -94,6 +95,7 @@ const Home = (props: { history: any }) => {
       setKms(body.channel as string);
     }
   }
+
   if (isMobile) {
     return (
       <MobileView
@@ -142,10 +144,11 @@ const Home = (props: { history: any }) => {
           </Box>
           <Box className={homeStyle.mainpageright}>
             <Box className={homeStyle.topBar}>
+              <ExitButton kms={kms} />
               <Typography variant="h5" className={homeStyle.chatname}>
                 You are chatting with {kms}
               </Typography>
-              <NextButton />
+              <NextButton kms={kms} />
             </Box>
             <Articles channelName={kms} />
           </Box>

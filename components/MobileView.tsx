@@ -12,6 +12,7 @@ import { isMobile } from "react-device-detect";
 import mobileStyle from "../styles/mobile.module.css";
 import Articles from "./Articles";
 import NextButton from "./buttons/NextButton";
+import ExitButton from "./buttons/ExitButton";
 
 export default function MobileView(props: any) {
   const [expanded, setExpanded] = useState(true);
@@ -59,10 +60,11 @@ export default function MobileView(props: any) {
         </Accordion>
         <Box>
           <Box className={mobileStyle.topBar}>
+            <ExitButton kms={props.kms} />
             <Typography variant="h5" className={mobileStyle.chatname}>
               You are chatting with {props.kms}
             </Typography>
-            <NextButton />
+            <NextButton kms={props.kms} />
           </Box>
           <Articles channelName={props.kms} />
         </Box>
