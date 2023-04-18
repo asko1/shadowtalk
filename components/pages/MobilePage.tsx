@@ -8,13 +8,12 @@ import {
   Typography,
 } from "@mui/material";
 import { useState } from "react";
-import { isMobile } from "react-device-detect";
-import mobileStyle from "../styles/mobile.module.css";
-import Articles from "./Articles";
-import NextButton from "./buttons/NextButton";
-import ExitButton from "./buttons/ExitButton";
+import mobileStyle from "../../styles/mobile.module.css";
+import Articles from "../Articles";
+import NextButton from "../buttons/NextButton";
+import ExitButton from "../buttons/ExitButton";
 
-export default function MobileView(props: any) {
+export default function MobilePage(props: any) {
   const [expanded, setExpanded] = useState(true);
 
   return (
@@ -27,7 +26,10 @@ export default function MobileView(props: any) {
           >
             <Typography
               variant="h4"
-              sx={{ textAlign: "center", fontFamily: "Nunito Sans" }}
+              sx={{
+                textAlign: "center",
+                fontFamily: "'Nunito Sans', sans-serif",
+              }}
             >
               <b>Find a friend for life!</b>
             </Typography>

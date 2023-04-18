@@ -174,10 +174,6 @@
 .chatname {
   display: inline-block;
   text-align: center;
-  background-color: #b6b6b6;
-
-  box-shadow: 0.5px 5px 7px #b6b6b6;
-  border-bottom-left-radius: 7px;
   font-family: "Nunito Sans", sans-serif;
 }
 
