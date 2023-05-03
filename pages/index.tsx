@@ -1,4 +1,4 @@
-import { Checkbox, FormControlLabel, ThemeProvider } from "@mui/material";
+import { Checkbox, FormControlLabel } from "@mui/material";
 import Participants from "../components/Participants";
 import { assertConfiguration, configureAbly } from "@ably-labs/react-hooks";
 import { getHistoricalMessages } from "../lib/history";
@@ -39,16 +39,14 @@ const Home = (props: { history: any }) => {
     const interestElements: JSX.Element[] = [];
     interests.map((interest, key) => {
       interestElements.push(
-        <ThemeProvider theme={Theme}>
-          <FormControlLabel
-            control={<Checkbox />}
-            label={interest}
-            name={interest}
-            key={key}
-            onChange={onChange}
-            sx={{ color: "#5cb567", "&.Mui-checked": { color: "primary" } }}
-          />
-        </ThemeProvider>
+        <FormControlLabel
+          control={<Checkbox />}
+          label={interest}
+          name={interest}
+          key={key}
+          onChange={onChange}
+          sx={{ color: "#5cb567", "&.Mui-checked": { color: "primary" } }}
+        />
       );
     });
     return interestElements;
@@ -89,24 +87,22 @@ const Home = (props: { history: any }) => {
   }
 
   return (
-    <ThemeProvider theme={Theme}>
-      <>
-        <BrowserView>
-          <DesktopPage
-            sendToMatching={sendToMatching}
-            populateInterests={populateInterests()}
-            kms={kms}
-          />
-        </BrowserView>
-        <MobileView>
-          <MobilePage
-            sendToMatching={sendToMatching}
-            populateInterests={populateInterests()}
-            kms={kms}
-          />
-        </MobileView>
-      </>
-    </ThemeProvider>
+    <>
+      <BrowserView>
+        <DesktopPage
+          sendToMatching={sendToMatching}
+          populateInterests={populateInterests()}
+          kms={kms}
+        />
+      </BrowserView>
+      <MobileView>
+        <MobilePage
+          sendToMatching={sendToMatching}
+          populateInterests={populateInterests()}
+          kms={kms}
+        />
+      </MobileView>
+    </>
   );
 };
 
