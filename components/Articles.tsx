@@ -3,9 +3,10 @@ import { ChannelParameters, useChannel } from "@ably-labs/react-hooks";
 import homeStyle from "../styles/Home.module.css";
 import MessageItem from "./MessageItem";
 import { Button } from "@mui/material";
-import SendIcon from '@mui/icons-material/Send';
+import SendIcon from "@mui/icons-material/Send";
 import { isMobile } from "react-device-detect";
 import mobileStyle from "../styles/mobile.module.css";
+import Voicechat from "./buttons/Voicechat";
 
 /* 
 clearHistoryState:
@@ -15,8 +16,8 @@ clearHistoryState:
 */
 let clearHistoryState = true;
 
-export default function Articles(props: { channelName: ChannelParameters; }) {
-  let inputBox: HTMLInputElement | null; 
+export default function Articles(props: { channelName: ChannelParameters }) {
+  let inputBox: HTMLInputElement | null;
 
   const [headlineText, setHeadlineText] = useState("");
   const [headlines, updateHeadlines] = useState([] as any);
@@ -25,7 +26,7 @@ export default function Articles(props: { channelName: ChannelParameters; }) {
       resetHeadlines();
       clearHistoryState = false;
     }
-    console.log(ably)
+    console.log(ably);
     updateHeadlines((prev: any) => [headline, ...prev]);
   });
   const resetHeadlines = () => {
@@ -36,31 +37,40 @@ export default function Articles(props: { channelName: ChannelParameters; }) {
   const processedHeadlines = headlines.map((headline: any) =>
     processMessage(headline, ably.auth.clientId)
   );
-  const articles = processedHeadlines.reverse().map((headline: any, index: React.Key | null | undefined) => (
-    // <ArticlePreview key={index} headline={headline} index={undefined} />
-    <MessageItem key={index} headline={headline} index={undefined}/>
-  ));
+  const articles = processedHeadlines
+    .reverse()
+    .map((headline: any, index: React.Key | null | undefined) => (
+      // <ArticlePreview key={index} headline={headline} index={undefined} />
+      <MessageItem key={index} headline={headline} index={undefined} />
+    ));
 
-  const handleFormSubmission = async (event: { charCode: number; preventDefault: () => void; }) => {
+  const handleFormSubmission = async (event: {
+    charCode: number;
+    preventDefault: () => void;
+  }) => {
     const nonEnterKeyPress = event.charCode && event.charCode !== 13;
     if (nonEnterKeyPress || headlineTextIsEmpty) {
       return;
     }
-    console.log(ably)
+    console.log(ably);
 
     event.preventDefault();
 
     await fetch("/api/publish", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ text: headlineText, author: ably.auth.clientId, channel: props.channelName }),
+      body: JSON.stringify({
+        text: headlineText,
+        author: ably.auth.clientId,
+        channel: props.channelName,
+      }),
     });
 
     setHeadlineText("");
     inputBox?.focus();
   };
 
-  let styles = (isMobile ? mobileStyle : homeStyle);
+  let styles = isMobile ? mobileStyle : homeStyle;
   return (
     <div>
       <div className={styles.messagesbox}>
@@ -70,37 +80,48 @@ export default function Articles(props: { channelName: ChannelParameters; }) {
         </div>
       </div>
       <div className={styles.chatbox}>
-      {/* @ts-ignore */}
-      <form onSubmit={handleFormSubmission}>
-        <input
-          type="textarea"
-          ref={(element) => {
-            inputBox = element;
-          }}
-          value={headlineText}
-          placeholder="Type something here..."
-          onChange={(event) => setHeadlineText(event.target.value)}
-          onKeyPress={handleFormSubmission}
-          className={styles.input}
-        />
-        <Button variant="contained" 
-                type="submit"
-                disabled={headlineTextIsEmpty}
-                endIcon={<SendIcon />}>
-          Send
-        </Button>
-      </form>
+        {/* @ts-ignore */}
+        <form onSubmit={handleFormSubmission}>
+          <Voicechat />
+          <input
+            type="textarea"
+            ref={(element) => {
+              inputBox = element;
+            }}
+            value={headlineText}
+            placeholder="Type something here..."
+            onChange={(event) => setHeadlineText(event.target.value)}
+            onKeyPress={handleFormSubmission}
+            className={styles.input}
+          />
+          <Button
+            variant="contained"
+            type="submit"
+            className={styles.sendButton}
+            disabled={headlineTextIsEmpty}
+            endIcon={<SendIcon />}
+          >
+            Send
+          </Button>
+        </form>
       </div>
     </div>
   );
 }
 
-function processMessage(headline: { data: { timestamp: string; text: any; }; timestamp: any; text: any; }, currentClientId: string) {
+function processMessage(
+  headline: {
+    data: { timestamp: string; text: any };
+    timestamp: any;
+    text: any;
+  },
+  currentClientId: string
+) {
   /*headline.data.author =
     headline.data.author === currentClientId ? "me" : headline.data.author;*/
   headline.data.timestamp =
     "timestamp" in headline ? formatDate(headline.timestamp) : "earlier";
-    headline.text = headline.data.text
+  headline.text = headline.data.text;
   return headline;
 }
 

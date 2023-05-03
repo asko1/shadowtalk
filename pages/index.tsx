@@ -1,34 +1,42 @@
-import { Box, Button, Checkbox, FormControlLabel, FormGroup, ThemeProvider, Typography, } from '@mui/material'
-import Head from 'next/head'
-import homeStyles from '../styles/Home.module.css'
+import { Checkbox, FormControlLabel } from "@mui/material";
 import Participants from "../components/Participants";
 import { assertConfiguration, configureAbly } from "@ably-labs/react-hooks";
-import Articles from "../components/Articles";
 import { getHistoricalMessages } from "../lib/history";
 import React, { SyntheticEvent, useState } from 'react';
 import Theme from "../utils/theme"
-import MobileView from '../components/MobileView';
-import { isMobile } from 'react-device-detect';
+import MobilePage from "../components/pages/MobilePage";
+import { BrowserView, MobileView } from "react-device-detect";
+import DesktopPage from "../components/pages/DesktopPage";
 
 configureAbly({
-  authUrl: `${process.env.NEXT_PUBLIC_URL || process.env.NEXT_PUBLIC_HOSTNAME}/api/createTokenRequest`,
+  authUrl: `${
+    process.env.NEXT_PUBLIC_URL || process.env.NEXT_PUBLIC_HOSTNAME
+  }/api/createTokenRequest`,
 });
 
 const ably = assertConfiguration();
-const interests = ["Gaming", "Music", "Drawing"]
+const interests = [
+  "Gaming",
+  "Music",
+  "Art",
+  "Sports",
+  "Technology",
+  "Cooking",
+  "Traveling",
+];
 
-const Home = (props: {history: any}) => {
-  const [kms, setKms] = useState('')
-  const test = <Participants channelName={kms}/>
+const Home = (props: { history: any }) => {
+  const [kms, setKms] = useState("");
+  const test = <Participants channelName={kms} />;
 
-  let formInterests: {[key: string]: any} = []
-  interests.map((interest) => {    
-    formInterests[interests.indexOf(interest)] = false
-  })
-  const [formData, setFormData] = useState(formInterests)
+  let formInterests: { [key: string]: any } = [];
+  interests.map((interest) => {
+    formInterests[interests.indexOf(interest)] = false;
+  });
+  const [formData, setFormData] = useState(formInterests);
 
   function populateInterests() {
-    const interestElements: JSX.Element[] = []
+    const interestElements: JSX.Element[] = [];
     interests.map((interest, key) => {
       interestElements.push(
         <ThemeProvider theme={Theme}>
@@ -47,86 +55,60 @@ const Home = (props: {history: any}) => {
   }
 
   function onChange(event: SyntheticEvent<Element, Event>) {
-    let newFormData = {...formData}
+    let newFormData = { ...formData };
     // @ts-ignore
-    newFormData[interests.indexOf(event.target.name)] = event.target.checked
-    setFormData(newFormData)
+    newFormData[interests.indexOf(event.target.name)] = event.target.checked;
+    setFormData(newFormData);
   }
-  
-  async function sendToMatching(event: { preventDefault: () => void; }) {
-    let stuff: any = {}
-    stuff[`${ably.auth.clientId}`] = Object.values(formData)
-      //{`${ably.auth.clientId}` = Object.values(formData)}
-    
-    console.log(stuff, 'stuff')
-    event.preventDefault()
-    const res = await fetch('/api/matching', {
+
+  async function sendToMatching(event: { preventDefault: () => void }) {
+    let stuff: any = {};
+    stuff[`${ably.auth.clientId}`] = Object.values(formData);
+    //{`${ably.auth.clientId}` = Object.values(formData)}
+
+    console.log(stuff, "stuff");
+    event.preventDefault();
+    const res = await fetch("/api/matching", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(stuff)
-    })
+      body: JSON.stringify(stuff),
+    });
 
     if (res.status === 201) {
-      const body = await res.json()
-      console.log(body.channel as string)
-      setKms(body.channel as string)
+      const body = await res.json();
+      console.log(body.channel as string);
+      setKms(body.channel as string);
     }
     if (res.status === 200) {
-      const body = await res.json()
-      console.log(body.channel as string)
-      setKms(body.channel as string)
+      const body = await res.json();
+      console.log(body.channel as string);
+      setKms(body.channel as string);
     }
   }
-  if(isMobile){
-    return(
-      <MobileView
-      sendToMatching={sendToMatching} 
-      populateInterests={populateInterests()}
-      kms={kms}
-      />
 
-    )
-  } else {
   return (
     <ThemeProvider theme={Theme}>
-      <div>
-        <Box className={homeStyles.mainpagedivision}>
-          <Box className={homeStyles.mainpageleft}>
-            <Head>
-              <title>Saamesõbraks</title>
-            </Head>
-            <Box>
-              <Typography variant='h3' sx={{ textAlign: 'center', fontFamily: 'Nunito Sans'}}>
-                <b>Find a friend for life!</b>
-              </Typography>
-              <form onSubmit={sendToMatching}>
-                <Box className={homeStyles.descriptionspecific} >
-                  <Button variant="contained" type="submit" >Text Chat</Button>
-                  <Button variant="contained" type="submit" sx={{bgcolor: '#00cc00'}} >Voice Chat</Button>
-                </Box>
-                <FormGroup>
-                  <Box className={homeStyles.descriptionspecific}>
-                    {populateInterests()}
-                  </Box>
-                </FormGroup>
-              </form>
-                <Participants channelName='waiting - ' />
-            </Box>
-          </Box>
-          <Box className={homeStyles.mainpageright}>
-            <Typography variant='h5' className={homeStyles.chatname}>
-              You are chatting with {kms}
-            </Typography>
-            <Articles channelName={kms} />
-          </Box>
-        </Box>
-    </div>
-    </ThemeProvider>
-  )
-  }
-}
+    <>
+      <BrowserView>
+        <DesktopPage
+          sendToMatching={sendToMatching}
+          populateInterests={populateInterests()}
+          kms={kms}
+        />
+      </BrowserView>
+      <MobileView>
+        <MobilePage
+          sendToMatching={sendToMatching}
+          populateInterests={populateInterests()}
+          kms={kms}
+        />
+      </MobileView>
+    </>
+  </ThemeProvider>
+  );
+};
 
 export async function getStaticProps() {
   const historicalMessages = await getHistoricalMessages();
@@ -140,4 +122,4 @@ export async function getStaticProps() {
   };
 }
 
-export default Home
+export default Home;
