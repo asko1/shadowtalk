@@ -74,7 +74,7 @@
   flex-wrap: wrap;
 }
 
-/* .card {
+.card {
   margin: 1rem;
   padding: 1.5rem;
   text-align: left;
@@ -92,7 +92,7 @@
 .card:active {
   color: #0070f3;
   border-color: #0070f3;
-} */
+}
 
 .card h2 {
   margin: 0 0 1rem 0;
@@ -180,7 +180,7 @@
 .topBar {
   display: flex;
   width: 100%;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 @media (max-width: 600px) {
@@ -202,18 +202,18 @@
   width: 100vw;
   display: grid;
   grid-template-columns: 50% 50%;
-  /* background-color: #f2f2f2; */
+  background-color: #f2f2f2;
 }
 
 .mainpageleft {
-  /* background-color: #f2f2f2; */
-  min-width: 50vw;
+  background-color: #f2f2f2;
+  min-width: 48vw;
 }
 
 .mainpageright {
   min-width: 48vw;
   height: 99vh;
-  /* background-color: #e0e0e0; */
+  background-color: #e0e0e0;
   justify-content: center;
   border-radius: 0 0 0 2%;
 }

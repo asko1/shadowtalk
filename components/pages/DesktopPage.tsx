@@ -77,7 +77,7 @@ export default function DesktopPage(props: any) {
           >
             <Box className={homeStyle.topBar}>
               <ExitButton kms={props.kms} />
-              <Typography variant="h5" className={homeStyle.chatname}>
+              <Typography variant="h6" className={homeStyle.chatname}>
                 You are chatting with {props.kms}
               </Typography>
               <NextButton kms={props.kms} />
