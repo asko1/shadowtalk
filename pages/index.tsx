@@ -1,9 +1,9 @@
-import { Checkbox, FormControlLabel } from "@mui/material";
+import { Checkbox, FormControlLabel, ThemeProvider } from "@mui/material";
 import Participants from "../components/Participants";
 import { assertConfiguration, configureAbly } from "@ably-labs/react-hooks";
 import { getHistoricalMessages } from "../lib/history";
-import React, { SyntheticEvent, useState } from 'react';
-import Theme from "../utils/theme"
+import React, { SyntheticEvent, useState } from "react";
+import Theme from "../utils/theme";
 import MobilePage from "../components/pages/MobilePage";
 import { BrowserView, MobileView } from "react-device-detect";
 import DesktopPage from "../components/pages/DesktopPage";
@@ -46,12 +46,12 @@ const Home = (props: { history: any }) => {
             name={interest}
             key={key}
             onChange={onChange}
-            sx={{ color: '#5cb567' , '&.Mui-checked':{color:'primary'}}}
+            sx={{ color: "#5cb567", "&.Mui-checked": { color: "primary" } }}
           />
         </ThemeProvider>
-      )
-    })
-    return interestElements
+      );
+    });
+    return interestElements;
   }
 
   function onChange(event: SyntheticEvent<Element, Event>) {
@@ -90,23 +90,23 @@ const Home = (props: { history: any }) => {
 
   return (
     <ThemeProvider theme={Theme}>
-    <>
-      <BrowserView>
-        <DesktopPage
-          sendToMatching={sendToMatching}
-          populateInterests={populateInterests()}
-          kms={kms}
-        />
-      </BrowserView>
-      <MobileView>
-        <MobilePage
-          sendToMatching={sendToMatching}
-          populateInterests={populateInterests()}
-          kms={kms}
-        />
-      </MobileView>
-    </>
-  </ThemeProvider>
+      <>
+        <BrowserView>
+          <DesktopPage
+            sendToMatching={sendToMatching}
+            populateInterests={populateInterests()}
+            kms={kms}
+          />
+        </BrowserView>
+        <MobileView>
+          <MobilePage
+            sendToMatching={sendToMatching}
+            populateInterests={populateInterests()}
+            kms={kms}
+          />
+        </MobileView>
+      </>
+    </ThemeProvider>
   );
 };
 
