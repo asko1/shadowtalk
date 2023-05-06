@@ -15,6 +15,12 @@ export const theme = createTheme({
       main: "#00cc00",
       dark: "#2eab57",
     },
+    error: {
+      main: "#d63c49"
+    },
+    warning: {
+      main: "#d63c49"
+    },
   },
   typography: {
     fontFamily: "'Nunito Sans', sans-serif",

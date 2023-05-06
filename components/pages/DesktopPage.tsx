@@ -16,7 +16,6 @@ import Theme from "../../utils/theme";
 export default function DesktopPage(props: any) {
   return (
     <ThemeProvider theme={Theme}>
-      <div>
         <Box
           className={homeStyle.mainpagedivision}
           sx={{ bgcolor: "Background.paper" }}
@@ -85,7 +84,6 @@ export default function DesktopPage(props: any) {
             <Articles channelName={props.kms} />
           </Box>
         </Box>
-      </div>
     </ThemeProvider>
   );
 }
