@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect } from 'react';
 import { usePresence, assertConfiguration } from "@ably-labs/react-hooks";
 import styles from "../styles/Home.module.css";
 
@@ -8,12 +8,11 @@ export default function Participants(props: any) {
   let [presenceData] = usePresence(props.channelName);
   const presenceList = presenceData.map((member: any, index: any) => {
     const isItMe = member.clientId === ably.auth.clientId ? " (me)" : "";
+
     if (index >= 7) {
-      i++
-      return (
-        // eslint-disable-next-line react/jsx-key
-        <h3 className="killme"> and {i} more </h3>
-      )
+      i++;
+      const andmore = <h3> and {i} more </h3>;
+      return <>{andmore}</>;
     }
    
     return (
@@ -28,3 +27,4 @@ export default function Participants(props: any) {
 
   return <ul>{presenceList}</ul>;
 }
+
