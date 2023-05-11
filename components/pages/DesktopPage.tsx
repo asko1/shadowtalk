@@ -41,7 +41,7 @@ export default function DesktopPage(props: any) {
               </Box>
             </form>
             Currently online:
-            <Participants channelName="" />
+            <Participants channelName="main" />
           </Box>
         </Box>
         <Box className={homeStyle.mainpageright}>
