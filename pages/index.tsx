@@ -3,6 +3,7 @@ import Participants from "../components/Participants";
 import { assertConfiguration, configureAbly } from "@ably-labs/react-hooks";
 import { getHistoricalMessages } from "../lib/history";
 import React, { SyntheticEvent, useState } from "react";
+import Theme from "../utils/theme";
 import MobilePage from "../components/pages/MobilePage";
 import { BrowserView, MobileView } from "react-device-detect";
 import DesktopPage from "../components/pages/DesktopPage";
@@ -44,7 +45,7 @@ const Home = (props: { history: any }) => {
           name={interest}
           key={key}
           onChange={onChange}
-          sx={{ color: "#5cb567", "&.Mui-checked": { color: "#5cb567" } }}
+          sx={{ color: "#5cb567", "&.Mui-checked": { color: "primary" } }}
         />
       );
     });
