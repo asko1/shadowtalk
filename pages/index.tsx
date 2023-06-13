@@ -1,48 +1,121 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
-import local from "../styles/local.module.css"
+import { Checkbox, FormControlLabel } from "@mui/material";
+import Participants from "../components/Participants";
+import { assertConfiguration, configureAbly } from "@ably-labs/react-hooks";
+import { getHistoricalMessages } from "../lib/history";
+import React, { SyntheticEvent, useState } from "react";
+import Theme from "../utils/theme";
+import MobilePage from "../components/pages/MobilePage";
+import { BrowserView, MobileView } from "react-device-detect";
+import DesktopPage from "../components/pages/DesktopPage";
 
-const Home: NextPage = () => {
+configureAbly({
+  authUrl: `${
+    process.env.NEXT_PUBLIC_URL || process.env.NEXT_PUBLIC_HOSTNAME
+  }/api/createTokenRequest`,
+});
+
+const ably = assertConfiguration();
+const interests = [
+  "Gaming",
+  "Music",
+  "Art",
+  "Sports",
+  "Technology",
+  "Cooking",
+  "Traveling",
+];
+
+const Home = (props: { history: any }) => {
+  const [kms, setKms] = useState("");
+  const test = <Participants channelName={kms} />;
+
+  let formInterests: { [key: string]: any } = [];
+  interests.map((interest) => {
+    formInterests[interests.indexOf(interest)] = false;
+  });
+  const [formData, setFormData] = useState(formInterests);
+
+  function populateInterests() {
+    const interestElements: JSX.Element[] = [];
+    interests.map((interest, key) => {
+      interestElements.push(
+        <FormControlLabel
+          control={<Checkbox />}
+          label={interest}
+          name={interest}
+          key={key}
+          onChange={onChange}
+          sx={{ color: "#5cb567", "&.Mui-checked": { color: "primary" } }}
+        />
+      );
+    });
+    return interestElements;
+  }
+
+  function onChange(event: SyntheticEvent<Element, Event>) {
+    let newFormData = { ...formData };
+    // @ts-ignore
+    newFormData[interests.indexOf(event.target.name)] = event.target.checked;
+    setFormData(newFormData);
+  }
+
+  async function sendToMatching(event: { preventDefault: () => void }) {
+    let stuff: any = {};
+    stuff[`${ably.auth.clientId}`] = Object.values(formData);
+    //{`${ably.auth.clientId}` = Object.values(formData)}
+
+    console.log(stuff, "stuff");
+    event.preventDefault();
+    const res = await fetch("/api/matching", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(stuff),
+    });
+
+    if (res.status === 201) {
+      const body = await res.json();
+      console.log(body.channel as string);
+      setKms(body.channel as string);
+    }
+    if (res.status === 200) {
+      const body = await res.json();
+      console.log(body.channel as string);
+      setKms(body.channel as string);
+    }
+  }
+
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Saamesõbraks</title>
-      </Head>
+    <>
+      <BrowserView>
+        <DesktopPage
+          sendToMatching={sendToMatching}
+          populateInterests={populateInterests()}
+          kms={kms}
+        />
+      </BrowserView>
+      <MobileView>
+        <MobilePage
+          sendToMatching={sendToMatching}
+          populateInterests={populateInterests()}
+          kms={kms}
+        />
+      </MobileView>
+    </>
+  );
+};
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to Saamesõbraks
-        </h1>
-        <div className={local.containerspecific}>
-          <form>
-            <div className={styles.description}>
-              <label>Gaming</label>
-              <input type="checkbox" value="Gaming"></input> 
-            </div>
-            <div className={local.griddiv}>
-              <input className={local.gridspecific} type="submit" value="Text Channel"></input> 
-              <input className={local.gridspecific} type="submit" value="Voice Channel"></input> 
-            </div>
-          </form>
-        </div>
-      </main>
+export async function getStaticProps() {
+  const historicalMessages = await getHistoricalMessages();
 
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer>
-    </div>
-  )
+  return {
+    props: {
+      history: historicalMessages,
+    },
+    //enable ISR
+    revalidate: 10,
+  };
 }
 
-export default Home
+export default Home;

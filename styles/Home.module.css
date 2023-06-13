@@ -1,15 +1,17 @@
 .container {
   padding: 0 2rem;
+  overflow-y: hidden;
 }
 
 .main {
   min-height: 100vh;
   padding: 4rem 0;
   flex: 1;
-  display: flex;
+  display: block;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
 
 .footer {
@@ -57,7 +59,7 @@
 }
 
 .code {
-  background: #fafafa;
+
   border-radius: 5px;
   padding: 0.75rem;
   font-size: 1.1rem;
@@ -70,7 +72,6 @@
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  max-width: 800px;
 }
 
 .card {
@@ -78,11 +79,12 @@
   padding: 1.5rem;
   text-align: left;
   color: inherit;
-  text-decoration: none;
   border: 1px solid #eaeaea;
   border-radius: 10px;
   transition: color 0.15s ease, border-color 0.15s ease;
-  max-width: 300px;
+  max-width: auto;
+  align-items: left;
+  overflow-wrap: break-word;
 }
 
 .card:hover,
@@ -108,6 +110,80 @@
   margin-left: 0.5rem;
 }
 
+.chatbox {
+  position: absolute;
+  bottom: 0.5vh;
+  width: 50vw;
+  padding-bottom: 0.25rem;
+}
+
+.voiceChat button {
+  height: 7vh;
+  border-radius: 0 0 0 20%;
+  width: 10%;
+  float: left;
+}
+
+.chatbox input {
+  height: 7vh;
+  width: 70%;
+  font-family: "Nunito Sans", sans-serif;
+  display: inline;
+}
+
+.sendButton {
+  height: 7vh;
+  width: 20%;
+  border-radius: 0;
+  font-family: "Nunito Sans", sans-serif;
+  padding: 0;
+}
+.messagesbox {
+  overflow-y: scroll;
+  width: 100%;
+  height: 82.5vh;
+  display: inline-block;
+  font-family: "Nunito Sans", sans-serif;
+}
+
+.scroller * {
+  overflow-anchor: none;
+}
+
+.scroller b {
+  font-size: medium;
+}
+
+.scroller text {
+  font-size: x-small;
+}
+
+.scroller span {
+  font-size: small;
+}
+
+.anchor {
+  overflow-anchor: auto;
+  height: 1px;
+}
+
+.timestamp {
+  font-size: x-small;
+}
+
+.chatname {
+  display: inline-block;
+  width: 80%;
+  text-align: center;
+  font-family: "Nunito Sans", sans-serif;
+}
+
+.topBar {
+  display: flex;
+  width: 95%;
+  justify-content: space-around;
+}
+
 @media (max-width: 600px) {
   .grid {
     width: 100%;
@@ -115,15 +191,35 @@
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  .card,
-  .footer {
-    border-color: #222;
-  }
-  .code {
-    background: #111;
-  }
-  .logo img {
-    filter: invert(1);
-  }
+.descriptionspecific {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+  flex-flow: wrap;
+}
+
+.mainpagedivision {
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+
+.mainpageleft {
+  min-width: 48vw;
+}
+
+.mainpageright {
+  min-width: 48vw;
+  height: 99vh;
+  justify-content: center;
+  border-radius: 0 0 0 2%;
+}
+
+.NextButton {
+  width: 10%;
+}
+
+.ExitButton {
+  max-width: 10%;
 }

@@ -9,9 +9,19 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@ably-labs/react-hooks": "^2.1.0",
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@mui/icons-material": "^5.11.0",
+    "@mui/material": "^5.11.7",
+    "ably": "^1.2.35",
     "next": "13.1.6",
+    "pusher": "^5.1.2",
+    "pusher-js": "^8.0.1",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-device-detect": "^2.2.3",
+    "react-dom": "18.2.0",
+    "unique-names-generator": "^4.7.1"
   },
   "devDependencies": {
     "@types/node": "18.11.18",
