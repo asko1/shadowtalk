@@ -67,7 +67,7 @@ export default function DesktopPage(props: any) {
                 </Box>
               </form>
               Currently online:
-              <Participants channelName="" />
+              <Participants channelName="| " />
             </Box>
           </Box>
           <Box
