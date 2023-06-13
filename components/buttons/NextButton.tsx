@@ -8,6 +8,7 @@ export default function NextButton(props: any) {
       disabled={!props.kms}
       className={homeStyle.NextButton}
       endIcon={<NavigateNextIcon />}
+      // onClick={}
     >
       Next
     </Button>
