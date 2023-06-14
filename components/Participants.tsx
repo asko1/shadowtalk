@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { usePresence, assertConfiguration } from "@ably-labs/react-hooks";
 import styles from "../styles/Home.module.css";
 import { Typography } from "@mui/material";
+import homeStyle from "../styles/Home.module.css";
 
 export default function Participants(props: any) {
   const ably = assertConfiguration();
@@ -28,7 +29,9 @@ export default function Participants(props: any) {
   return (
     <div>
       <ul>{presenceList}</ul>
-      <h3> and +{ howMany } more</h3>
+      <Typography className={homeStyle.curOnline}>
+        <h3> and +{ howMany } more</h3>
+      </Typography>
     </div>
   );
 }

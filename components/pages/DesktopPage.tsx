@@ -66,7 +66,9 @@ export default function DesktopPage(props: any) {
                   </Button>
                 </Box>
               </form>
-              Currently online:
+              <Typography variant="h6" className={homeStyle.curOnline}>
+                <b>Currently online:</b>
+              </Typography>
               <Participants channelName="| " />
             </Box>
           </Box>
